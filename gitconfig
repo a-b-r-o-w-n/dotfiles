@@ -1,0 +1,9 @@
+[commit]
+  template = ~/.gitmessage
+[user]
+  email = asbrown002@gmail.com
+  name = Andy Brown
+[push]
+	default = matching
+[core]
+	excludesfile = /Users/andy/.gitignore

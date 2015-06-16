@@ -1,0 +1,147 @@
+if &compatible
+  set nocompatible
+end
+
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+" Define bundles via Github repos
+Bundle 'danro/rename.vim'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/matchit.zip'
+Bundle 'vim-scripts/ctags.vim'
+Bundle 'vim-scripts/tComment'
+Bundle 'scrooloose/nerdtree'
+Bundle 'astephenb/a.vim'
+Bundle 'pangloss/vim-javascript'
+Bundle 'mxw/vim-jsx'
+Bundle 'endel/vim-github-colorscheme'
+Bundle 'tomasr/molokai'
+Bundle 'wesQ3/vim-windowswap'
+Bundle 'duff/vim-bufonly'
+Bundle 'rizzatti/dash.vim'
+Bundle 'digitaltoad/vim-jade.git'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Powerline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntax
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'scrooloose/syntastic'
+let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers = ['jsxhint']
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ruby, Rails, etc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'tpope/vim-rvm'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-rails'
+Bundle 'thoughtbot/vim-rspec'
+Bundle 'tpope/vim-cucumber'
+Bundle 'ecomba/vim-ruby-refactoring'
+
+" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
+let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
+
+" vim-rspec mappings
+let g:rspec_runner = "os_x_iterm"
+let g:rspec_command = "!bundle exec spring rspec {spec}"
+nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <Leader>s :call RunNearestSpec()<CR>
+nnoremap <Leader>l :call RunLastSpec()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use Ag for file searching, including Ctrl+p
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'rking/ag.vim'
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+map <leader>K :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Git
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'tpope/vim-fugitive'
+
+map <leader>gs :Gstatus<cr>
+map <leader>gc :Gcommit<cr>
+map <leader>ga :Git add --all<cr>:Gcommit<cr>
+map <leader>gb :Gblame<cr>
+map <leader>ph :Gpush origin head<cr>
+
+" Use j/k in status
+function! BufReadIndex()
+  setlocal cursorline
+  setlocal nohlsearch
+
+  nnoremap <buffer> <silent> j :call search('^#\t.*','W')<Bar>.<CR>
+  nnoremap <buffer> <silent> k :call search('^#\t.*','Wbe')<Bar>.<CR>
+endfunction
+
+autocmd BufReadCmd *.git/index exe BufReadIndex()
+autocmd BufEnter   *.git/index silent normal gg0j
+
+" Start in insert mode for commit
+function! BufEnterCommit()
+  normal gg0
+  if getline('.') == ''
+    start
+  end
+endfunction
+autocmd BufEnter    *.git/COMMIT_EDITMSG             exe BufEnterCommit()
+
+" Automatically remove fugitive buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+let g:ctrlp_custom_ignore = {'dir': 'node_modules'}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Go
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'fatih/vim-go'
+let g:go_fmt_command = "goimports"
+
+au FileType go nmap <Leader>s <Plug>(go-implements)
+
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto Complete
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Bundle 'Valloric/YouCompleteMe'
+" Only autocomplete for go and java
+" imap <Tab> <C-P>
+" let g:ycm_min_num_identifier_candidate_chars = 3
+" let g:ycm_auto_trigger = 0
+" let g:ycm_filetype_whitelist = { 'go': 1, 'java': 1 }
+
+if filereadable(expand("~/.vimrc.bundles.local"))
+  source ~/.vimrc.bundles.local
+endif
+
+filetype on

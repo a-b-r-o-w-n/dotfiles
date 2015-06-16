@@ -1,0 +1,120 @@
+filetype off
+set rtp+=~/.nvim/bundle/neobundle.vim/
+call neobundle#begin(expand('~/.nvim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'tomasr/molokai'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'vim-scripts/tComment'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
+NeoBundle 'moll/vim-node'
+NeoBundle 'wesQ3/vim-windowswap'
+NeoBundle 'duff/vim-bufonly'
+NeoBundle 'digitaltoad/vim-jade.git'
+NeoBundle 'tpope/vim-eunuch'
+NeoBundle 'tpope/vim-git'
+
+NeoBundle 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_custom_ignore = {'dir': 'node_modules'}
+if executable('ag')
+  let g:agprg = 'ag --nogroup --column --nocolor'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+NeoBundle 'scrooloose/nerdtree'
+let NERDTreeWinPos='right'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntax
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+NeoBundle 'benekastah/neomake'
+let g:neomake_javascript_jsxhint_maker = {
+    \ 'args': ['--verbose'],
+    \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
+    \ }
+let g:neomake_javascript_enabled_makers = ['eslint']
+autocmd! BufWinEnter,BufWritePost * Neomake
+
+function! LocationNext()
+  try
+    lnext
+  catch
+    lfirst | catch | endtry
+  endtry
+endfunction
+
+nnoremap <Leader>n :silent! call LocationNext()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Powerline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+NeoBundle 'bling/vim-airline'
+let g:airline_theme='powerlineish'
+let g:airline#extensions#branch#enabled     = 1
+let g:airline#extensions#syntastic#enabled  = 1
+let g:airline_section_y = ''
+
+" vim-powerline symbols
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep          = '⮀'
+let g:airline_left_alt_sep      = '⮁'
+let g:airline_right_sep         = '⮂'
+let g:airline_right_alt_sep     = '⮃'
+let g:airline_symbols.branch    = '⭠'
+let g:airline_symbols.readonly  = '⭤'
+let g:airline_symbols.linear    = '⭡'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use Ag for file searching, including Ctrl+p
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+NeoBundle 'rking/ag.vim'
+
+map <leader>K :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Git
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+NeoBundle 'tpope/vim-fugitive'
+
+map <leader>gs :Gstatus<cr>
+map <leader>gc :Gcommit<cr>
+map <leader>ga :Git add --all<cr>:Gcommit<cr>
+map <leader>gb :Gblame<cr>
+map <leader>ph :Gpush origin head<cr>
+
+" Use j/k in status
+function! BufReadIndex()
+  setlocal cursorline
+  setlocal nohlsearch
+
+  nnoremap <buffer> <silent> j :call search('^#\t.*','W')<Bar>.<CR>
+  nnoremap <buffer> <silent> k :call search('^#\t.*','Wbe')<Bar>.<CR>
+endfunction
+
+autocmd BufReadCmd *.git/index exe BufReadIndex()
+autocmd BufEnter   *.git/index silent normal gg0j
+
+" Start in insert mode for commit
+function! BufEnterCommit()
+  normal gg0
+  if getline('.') == ''
+    start
+  end
+endfunction
+autocmd BufEnter    *.git/COMMIT_EDITMSG             exe BufEnterCommit()
+
+" Automatically remove fugitive buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+call neobundle#end()
+filetype on
+
+NeoBundleCheck

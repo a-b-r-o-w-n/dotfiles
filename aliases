@@ -1,0 +1,48 @@
+# Unix
+alias tlf="tail -f"
+alias ln='ln -v'
+alias mkdir='mkdir -p'
+alias ...='../..'
+alias l='ls'
+alias ll='ls -al'
+alias lh='ls -Alh'
+alias -g G='| grep'
+alias -g M='| less'
+alias -g L='| wc -l'
+alias -g ONE="| awk '{ print \$1}'"
+alias vim="$EDITOR"
+alias e="$EDITOR"
+alias v="$VISUAL"
+
+# git
+alias gcl='git clone'
+alias ga='git add'
+alias gall='git add .'
+alias gus='git reset HEAD'
+alias gm='git merge'
+alias g='git'
+alias gs='git status'
+alias gss='git status -s'
+alias gl='git pull'
+alias gpr='git pull --rebase'
+alias gf='git fetch -p'
+alias gup='git fetch -p && git rebase'
+alias gp='git push'
+alias gpo='git push origin'
+alias gdv='git diff -w "$@" | vim -R -'
+alias gc='git commit -v'
+alias gci='git commit --interactive'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gcount='git shortlog -sn'
+alias gco='git checkout'
+alias gdel='git branch -D'
+alias gll='git log --graph --pretty=oneline --abbrev-commit'
+alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(magenta)%d%Creset %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset' --abbrev-commit --date=relative"
+alias ggs='gg --stat'
+alias gw='git whatchanged'
+alias gr='git rebase'
+alias gd='git diff | $EDITOR'
+
+# General
+alias k=clear
