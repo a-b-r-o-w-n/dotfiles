@@ -1,40 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env bash
 
-OUTPUT_DIR = ARGV[0] || Dir.home
-
-LINKED_FILES = %w{
-  agignore
-  aliases
-  eslintignore
-  eslintrc
-  gemrc
-  gitconfig
-  gitignore
-  gitmessage
-  nvimrc
-  nvimrc.bundles
-  nvimrc.scripts
-  rspec
-  tmux.conf
-  vimrc
-  vimrc.bundles
-  vimrc.scripts
-  zsh
-  zshrc
-}
-
-LINKED_FILES.each do |file|
-  puts "Linking: #{file}"
-  `ln -sf #{File.expand_path(file)} #{OUTPUT_DIR}/.#{file}`
-end
-
-%w{ nvim }.each do |dir_name|
-  puts "Creating directory: #{dir_name}"
-  dir = File.join(OUTPUT_DIR, ".#{dir_name}")
-  `mkdir #{dir}`
-  `mkdir #{dir}/bundle`
-  `mkdir #{dir}/colors`
-  `mkdir #{dir}/spell`
-  `mkdir #{dir}/undo`
-  `git clone https://github.com/Shougo/neobundle.vim #{dir}/bundle/neobundle.vim`
-end
+bin/setup_symlinks
+bin/setup_homebrew

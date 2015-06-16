@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+
+OUTPUT_DIR = ARGV[0] || Dir.home
+
+LINKED_FILES = %w{
+  agignore
+  aliases
+  eslintignore
+  eslintrc
+  gemrc
+  gitconfig
+  gitignore
+  gitmessage
+  nvimrc
+  nvimrc.bundles
+  nvimrc.scripts
+  rspec
+  tmux.conf
+  vimrc
+  vimrc.bundles
+  vimrc.scripts
+  zsh
+  zshrc
+}
+
+def link_files
+  LINKED_FILES.each do |file|
+    symlink(file)
+  end
+end
+
+def symlink(file)
+  dest = "#{OUTPUT_DIR}/.#{file}"
+  return if File.exist?(dest)
+
+  puts "Linking: #{file}"
+  system('ln -sf', File.expand_path(file), dest)
+end
+
+def create_dir(dir)
+  return if Dir.exist?(dir)
+
+  puts "Creating directory: #{dir_name}"
+  system("mkdir #{dir}")
+end
+
+def create_vim_dir
+  %w{ nvim }.each do |dir_name|
+    dir = File.join(OUTPUT_DIR, ".#{dir_name}")
+    create_dir(dir)
+    create_dir("#{dir}/bundle")
+    create_dir("#{dir}/colors")
+    create_dir("#{dir}/spell")
+    create_dir("#{dir}/undo")
+    install_neobundle(dir)
+  end
+end
+
+def install_neobundle(dir)
+  dest = "#{dir}/bundle/"
+  return if Dir.exist?(dest)
+
+  system("git clone https://github.com/Shougo/neobundle.vim #{dest}/neobundle.vim")
+end
+
+link_files
+create_vim_dir

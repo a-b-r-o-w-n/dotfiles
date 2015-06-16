@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+PACKAGES = %w{
+  direnv
+  neovim
+  postgresql
+  the_silver_searcher
+  tmux
+  tree
+}
+
+def brew_update
+  puts 'Updating homebrew...'
+  system('brew update 2> /dev/null')
+end
+
+def package_installed?(package_name)
+  system("brew ls --versions #{package_name} | grep -q .")
+end
+
+def install_package(package_name)
+  if package_installed?(package_name)
+    return puts "#{package_name} already installed."
+  end
+
+  system("brew install #{package_name}")
+end
+
+def install_packages
+  PACKAGES.each do |package_name|
+    install_package(package_name)
+  end
+end
+
+def main
+  brew_update
+  install_packages
+end
+
+main
