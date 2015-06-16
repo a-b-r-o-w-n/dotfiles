@@ -16,6 +16,8 @@ NeoBundle 'duff/vim-bufonly'
 NeoBundle 'digitaltoad/vim-jade.git'
 NeoBundle 'tpope/vim-eunuch'
 NeoBundle 'tpope/vim-git'
+NeoBundle 'tmhedberg/matchit'
+NeoBundle 'ecomba/vim-ruby-refactoring'
 
 NeoBundle 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_custom_ignore = {'dir': 'node_modules'}
