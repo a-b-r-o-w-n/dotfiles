@@ -1,25 +1,22 @@
 filetype off
-set rtp+=~/.nvim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.nvim/bundle/'))
+call plug#begin('~/.nvim/bundle')
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+Plug 'tomasr/molokai'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/tComment'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'moll/vim-node'
+Plug 'wesQ3/vim-windowswap'
+Plug 'duff/vim-bufonly'
+Plug 'digitaltoad/vim-jade.git'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-git'
+Plug 'tmhedberg/matchit'
+Plug 'ecomba/vim-ruby-refactoring'
 
-NeoBundle 'tomasr/molokai'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'vim-scripts/tComment'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'moll/vim-node'
-NeoBundle 'wesQ3/vim-windowswap'
-NeoBundle 'duff/vim-bufonly'
-NeoBundle 'digitaltoad/vim-jade.git'
-NeoBundle 'tpope/vim-eunuch'
-NeoBundle 'tpope/vim-git'
-NeoBundle 'tmhedberg/matchit'
-NeoBundle 'ecomba/vim-ruby-refactoring'
-
-NeoBundle 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_custom_ignore = {'dir': 'node_modules'}
 if executable('ag')
   let g:agprg = 'ag --nogroup --column --nocolor'
@@ -27,18 +24,18 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-NeoBundle 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 let NERDTreeWinPos='right'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-NeoBundle 'benekastah/neomake'
-let g:neomake_javascript_jsxhint_maker = {
-    \ 'args': ['--verbose'],
-    \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-    \ }
+Plug 'benekastah/neomake'
+
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_ruby_enabled_makers = ['rubocop']
+let g:neomake_json_enabled_makers = ['jsonlint']
+
 autocmd! BufWinEnter,BufWritePost * Neomake
 
 function! LocationNext()
@@ -54,8 +51,8 @@ nnoremap <Leader>n :silent! call LocationNext()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Powerline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-NeoBundle 'bling/vim-airline'
+" Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'bling/vim-airline'
 let g:airline_theme='powerlineish'
 let g:airline#extensions#branch#enabled     = 1
 let g:airline#extensions#syntastic#enabled  = 1
@@ -77,14 +74,14 @@ let g:airline_symbols.linear    = '⭡'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Ag for file searching, including Ctrl+p
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-NeoBundle 'rking/ag.vim'
+Plug 'rking/ag.vim'
 
 map <leader>K :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-NeoBundle 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 map <leader>gs :Gstatus<cr>
 map <leader>gc :Gcommit<cr>
@@ -116,7 +113,5 @@ autocmd BufEnter    *.git/COMMIT_EDITMSG             exe BufEnterCommit()
 " Automatically remove fugitive buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
-call neobundle#end()
+call plug#end()
 filetype on
-
-NeoBundleCheck
