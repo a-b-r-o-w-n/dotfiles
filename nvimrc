@@ -38,7 +38,10 @@ source ~/.nvimrc.bundles
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 let g:rehash256 = 1
-colorscheme molokai
+
+try
+  colorscheme molokai
+endtry
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Mappings
