@@ -2,7 +2,7 @@
 
 OUTPUT_DIR = ARGV[0] || Dir.home
 
-LINKED_FILES = %w{
+LINKED_FILES = %w(
   agignore
   aliases
   eslintignore
@@ -21,7 +21,7 @@ LINKED_FILES = %w{
   vimrc.scripts
   zsh
   zshrc
-}
+)
 
 def link_files
   LINKED_FILES.each do |file|
@@ -34,7 +34,7 @@ def symlink(file)
   return if File.exist?(dest)
 
   puts "Linking: #{file}"
-  system('ln -sf', File.expand_path(file), dest)
+  system('ln', '-s', File.expand_path(file), dest)
 end
 
 def create_dir(dir)
@@ -45,22 +45,22 @@ def create_dir(dir)
 end
 
 def create_vim_dir
-  %w{ nvim }.each do |dir_name|
-    dir = File.join(OUTPUT_DIR, ".#{dir_name}")
-    create_dir(dir)
-    create_dir("#{dir}/bundle")
-    create_dir("#{dir}/colors")
-    create_dir("#{dir}/spell")
-    create_dir("#{dir}/undo")
-    install_neobundle(dir)
-  end
+  dir = File.join(OUTPUT_DIR, '.nvim')
+  create_dir(dir)
+  create_dir("#{dir}/bundle")
+  create_dir("#{dir}/colors")
+  create_dir("#{dir}/spell")
+  create_dir("#{dir}/undo")
+  install_vim_plug(dir)
 end
 
-def install_neobundle(dir)
-  dest = "#{dir}/bundle/"
-  return if Dir.exist?(dest)
+def install_vim_plug(dir)
+  puts 'Installing vim-plug'
+  repo = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  dest = File.join(dir, 'autoload', 'plug.vim')
 
-  system("git clone https://github.com/Shougo/neobundle.vim #{dest}/neobundle.vim")
+  return if File.exist?(dest)
+  system('curl', '--silent', '-fLo', dest, '--create-dirs', repo)
 end
 
 link_files

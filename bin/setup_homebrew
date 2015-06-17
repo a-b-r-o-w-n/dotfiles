@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 
-PACKAGES = %w{
+PACKAGES = %w(
   direnv
   neovim
   postgresql
   the_silver_searcher
   tmux
   tree
-}
+)
 
 def brew_update
   puts 'Updating homebrew...'
