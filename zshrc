@@ -58,6 +58,9 @@ export PATH="$HOME/.bin:$PATH"
 # mkdir .git/safe in the root of repositories you trust
 export GOPATH=$HOME/src/go
 export PATH="$HOME/.rvm/bin:/usr/local/sbin:$PATH:$HOME/.bin:$GOPATH/bin"
+
+# add heroku cli
+export PATH="$PATH:/usr/local/heroku/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # aliases
