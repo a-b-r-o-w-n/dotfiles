@@ -66,8 +66,8 @@ vmap <Leader>P "+P
 :command! Q q
 
 " Open split with term
-nnoremap <C-w><C-v> <C-w>v :term<CR>
-nnoremap <C-w><C-s> <C-w>s :term<CR>
+nnoremap <C-w><C-v> :vsplit<CR> :term<CR>
+nnoremap <C-w><C-s> :split<CR> :term<CR>
 
 " Inserts the path of the currently edited file into a command
 " Command mode: %%
