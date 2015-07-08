@@ -18,12 +18,11 @@ set expandtab
 set list listchars=tab:»·,trail:·
 set number
 set numberwidth=5
-set cursorline
+" set cursorline
 set wildmode=list:longest,list:full
 set complete=.,w,t,b
 set splitbelow
 set splitright
-set hlsearch
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
 
 filetype plugin indent on
@@ -42,6 +41,10 @@ let g:rehash256 = 1
 try
   colorscheme molokai
 endtry
+
+set hlsearch
+hi Search cterm=NONE ctermfg=15 ctermbg=13
+hi IncSearch cterm=NONE ctermfg=0 ctermbg=15
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Mappings
