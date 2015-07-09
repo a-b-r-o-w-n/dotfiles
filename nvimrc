@@ -18,7 +18,7 @@ set expandtab
 set list listchars=tab:»·,trail:·
 set number
 set numberwidth=5
-" set cursorline
+set cursorline
 set wildmode=list:longest,list:full
 set complete=.,w,t,b
 set splitbelow
