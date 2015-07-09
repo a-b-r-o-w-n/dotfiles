@@ -91,6 +91,7 @@ function! MyReadonly()
   endif
 endfunction
 
+" TODO why does fugitive in status line break neovim
 function! MyFugitive()
   return exists('*fugitive#head') ? '⭠ ' . fugitive#head() : ''
 endfunction
@@ -100,25 +101,6 @@ function! MyFilename()
        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
        \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
-
-" Plug 'bling/vim-airline'
-" let g:airline_theme='powerlineish'
-" let g:airline#extensions#branch#enabled     = 1
-" let g:airline#extensions#syntastic#enabled  = 1
-" let g:airline_section_y = ''
-"
-" " vim-powerline symbols
-" if !exists('g:airline_symbols')
-"   let g:airline_symbols = {}
-" endif
-"
-" let g:airline_left_sep          = '⮀'
-" let g:airline_left_alt_sep      = '⮁'
-" let g:airline_right_sep         = '⮂'
-" let g:airline_right_alt_sep     = '⮃'
-" let g:airline_symbols.branch    = '⭠'
-" let g:airline_symbols.readonly  = '⭤'
-" let g:airline_symbols.linear    = '⭡'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Ag for file searching, including Ctrl+p
@@ -161,6 +143,12 @@ autocmd BufEnter    *.git/COMMIT_EDITMSG             exe BufEnterCommit()
 
 " Automatically remove fugitive buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autocomplete
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'Valloric/YouCompleteMe'
+set completeopt-=preview
 
 call plug#end()
 filetype on
