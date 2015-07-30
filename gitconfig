@@ -7,3 +7,19 @@
 	default = matching
 [core]
 	excludesfile = /Users/andy/.gitignore
+[alias]
+  c = commit -v
+	co = checkout
+  a = add
+  m = merge
+  s = status -s
+  f = fetch -p
+  b = branch
+  ba = branch -a
+  d = branch -D
+  r = reset
+  po = push origin
+  count = shortlong -sn
+  l = log --graph --pretty=format:'%Cred%h%Creset -%C(magenta)%d%Creset %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset' --abbrev-commit --date=relative
+  stat = log --graph --pretty=format:'%Cred%h%Creset -%C(magenta)%d%Creset %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset' --abbrev-commit --date=relative --stat
+

@@ -62,6 +62,8 @@ export PATH="$HOME/.rvm/bin:/usr/local/sbin:$PATH:$HOME/.bin:$GOPATH/bin"
 # add heroku cli
 export PATH="$PATH:/usr/local/heroku/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+source ~/.nvm/nvm.sh
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # aliases
 source ~/.aliases
