@@ -17,7 +17,7 @@ alias v="$VISUAL"
 # git
 alias g='git'
 alias grh='g f && g r --hard HEAD@{u}'
-alias gup='g f && g r'
+alias gup='g f && g rebase'
 
 # General
 alias k=clear
