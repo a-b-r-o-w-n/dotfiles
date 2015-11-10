@@ -6,6 +6,7 @@
 	username = astephenb
 [push]
 	default = matching
+	followTags = true
 [core]
 	excludesfile = /Users/andy/.gitignore
 [alias]
@@ -18,8 +19,9 @@
   b = branch
   ba = branch -a
   d = branch -D
-  r = reset
+  res = reset
   po = push origin
+  pr = pull --rebase
   count = shortlong -sn
   l = log --graph --pretty=format:'%Cred%h%Creset -%C(magenta)%d%Creset %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset' --abbrev-commit --date=relative
   stat = log --graph --pretty=format:'%Cred%h%Creset -%C(magenta)%d%Creset %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset' --abbrev-commit --date=relative --stat
