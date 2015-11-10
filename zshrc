@@ -99,12 +99,20 @@ parse_git_dirty() {
   fi
 }
 
-# show current rbenv version if different from rbenv global
-rvm_ruby_version() {
-  if [[ -f ".ruby-version" ]]; then
-    echo "[%{$fg_bold[yellow]%}$(~/.rvm/bin/rvm-prompt)%{$reset_color%}]"
-  fi
-}
+# show current rvm version
+# rvm_ruby_version() {
+#   if [[ -f ".ruby-version" ]]; then
+#     echo "[%{$fg_bold[yellow]%}$(~/.rvm/bin/rvm-prompt)%{$reset_color%}]"
+#   fi
+# }
+
+# show current nvm version
+# nvm_node_version() {
+#   if [[ -f ".nvmrc" ]]; then
+#     echo "found nvmrc"
+#     echo "[%{$fg_bold[yellow]%}node-$(nvm version)%{$reset_color%}]"
+#   fi
+# }
 
 show_upstream() {
   upstream_state=''
@@ -147,4 +155,4 @@ export CLICOLOR=1
 setopt PROMPT_SUBST
 
 # prompt
-export PS1='$(rvm_ruby_version) [%{$fg_bold[blue]%}%~%{$reset_color%}]$(git_prompt_info)'$'\n''%{$fg[green]%}→%{$reset_color%} '
+export PS1='[%{$fg_bold[blue]%}%~%{$reset_color%}]$(git_prompt_info)'$'\n''%{$fg[green]%}→%{$reset_color%} '
