@@ -15,6 +15,7 @@ LINKED_FILES = %w(
   nvimrc.bundles
   nvimrc.scripts
   rspec
+  spacemacs
   tmux.conf
   vimrc
   vimrc.bundles
@@ -64,4 +65,4 @@ def install_vim_plug(dir)
 end
 
 link_files
-create_vim_dir
+# create_vim_dir
