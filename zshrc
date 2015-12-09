@@ -154,5 +154,11 @@ export CLICOLOR=1
 # expand functions in the prompt
 setopt PROMPT_SUBST
 
+TIMESTAMP="%{$fg[green]%}%D{%L:%M:%S %p}%{$reset_color%}"
+
 # prompt
-export PS1='[%{$fg_bold[blue]%}%~%{$reset_color%}]$(git_prompt_info)'$'\n''%{$fg[green]%}→%{$reset_color%} '
+export PS1='[$TIMESTAMP] [%{$fg_bold[blue]%}%~%{$reset_color%}]$(git_prompt_info)'$'\n''%{$fg[green]%}→%{$reset_color%} '
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export TERM=xterm-256color
