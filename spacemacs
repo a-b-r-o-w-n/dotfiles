@@ -197,15 +197,64 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
-  (setq system-uses-terminfo)
   (setq mac-pass-command-to-system nil)
   )
+
+(defun force-save ()
+  (interactive)
+  (not-modified 1)
+  (save-buffer))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
-layers configuration. You are free to put any user code."
+layers configuration. You are free ;TODO: o put any user code."
   (define-key key-translation-map "\C-j" "\C-x")
+  (global-set-key (kbd "M-\\") 'spacemacs/comment-or-uncomment-lines)
+  (global-set-key (kbd "C-x C-s") 'force-save)
+  (global-set-key (kbd "C-,") 'spacemacs/indent-region-or-buffer)
+  (setq-default
+   global-auto-complete-mode t
+   js-indent-level 2
+   js2-basic-offset 2
+   js2-highlight-level 3
+   js2-mode-show-parse-errors nil
+   js2-include-node-externs t
+   js2-strict-inconsistent-return-warning nil
+   js2-strict-missing-semi-warning nil
+   js2-strict-trailing-comma-warning nil
+   js2-strict-var-hides-function-arg-warning nil
+   js2-strict-var-redeclaration-warning nil
+   js2-mode-show-strict-warnings nil
+   js2-strict-cond-assign-warning nil
+   magit-commit-arguments (quote ("--verbose"))
+   magit-fetch-arguments (quote ("--prune"))
+   magit-pull-arguments nil
+   magit-push-arguments (quote ("--set-upstream"))
+   magit-save-repository-buffers nil
+   web-mode-code-indent-offset 2
+   web-mode-enable-auto-indentation t
+   web-mode-enable-auto-pairing nil
+   web-mode-indent-style 1
+   web-mode-markup-indent-offset 2
+   mac-command-modifier 'meta
+   css-indent-offset 2)
+
+  (global-linum-mode 1)
+
+  (add-hook 'after-save-hook 'whitespace-cleanup)
+  (add-hook 'term-mode-hook 'spacemacs/toggle-line-numbers-off)
+
+  ;; js2-mode config
+  (add-hook 'js2-mode-hook 'spacemacs/toggle-syntax-checking-on)
+  (add-hook 'js2-mode-hook (lambda () (tern-mode -1)))
+
+  ;; magit config
+  (add-hook 'git-commit-mode-hook
+            (lambda () (local-set-key (kbd "C-x C-s") 'with-editor-finish)))
+
+  ;; powerline config
+  (setq powerline-default-separator 'alternate)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -215,20 +264,13 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(global-auto-complete-mode t)
- '(js-indent-level 2)
- '(js2-basic-offset 2)
- '(js2-mode-show-parse-errors nil)
- '(magit-commit-arguments (quote ("--verbose")))
- '(magit-push-arguments (quote ("--set-upstream")))
- '(magit-save-repository-buffers nil)
- '(ns-alternate-modifier (quote super))
- '(ns-command-modifier (quote meta))
- '(web-mode-code-indent-offset 2)
- '(web-mode-enable-auto-indentation t)
- '(web-mode-enable-auto-pairing nil)
- '(web-mode-indent-style 1)
- '(web-mode-markup-indent-offset 2))
+ '(delete-selection-mode t)
+ '(flycheck-sass-executable "/Users/andy/.rvm/gems/ruby-2.1.5@poc-oliver/bin/sass")
+ '(ido-auto-merge-delay-time 5)
+ '(projectile-enable-caching nil)
+ '(projectile-git-command "ag --nocolor -l -g \"\"")
+ '(scss-sass-command
+   (quote /Users/andy/\.rvm/gems/ruby-2\.1\.5@poc-oliver/bin/sass)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
