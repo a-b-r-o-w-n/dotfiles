@@ -30,14 +30,15 @@ values."
      git
      javascript
      react
+     floobits
      ;; markdown
      ;; org
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
      ;; spell-checking
-     syntax-checking
-     ;; version-control
+     (syntax-checking :variables syntax-checking-enable-tooltips nil)
+     version-control
      (osx :variables osx-use-option-as-meta nil)
      )
    ;; List of additional packages that will be installed without being
