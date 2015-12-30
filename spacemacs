@@ -216,6 +216,9 @@ layers configuration. You are free ;TODO: o put any user code."
   (global-set-key (kbd "M-\\") 'spacemacs/comment-or-uncomment-lines)
   (global-set-key (kbd "C-x C-s") 'force-save)
   (global-set-key (kbd "C-,") 'spacemacs/indent-region-or-buffer)
+  (global-set-key (kbd "C-=") 'text-scale-increase)
+  (global-set-key (kbd "C--") 'text-scale-decrease)
+  (global-set-key (kbd "C-0") 'text-scale-adjust)
   (setq-default
    global-auto-complete-mode t
    js-indent-level 2
@@ -241,8 +244,17 @@ layers configuration. You are free ;TODO: o put any user code."
    web-mode-indent-style 1
    web-mode-markup-indent-offset 2
    mac-command-modifier 'meta
-   css-indent-offset 2)
+   css-indent-offset 2
+   delete-selection-mode t
+   flycheck-sass-executable "/Users/andy/.rvm/gems/ruby-2.1.5@poc-oliver/bin/sass"
+   global-evil-search-highlight-persist nil
+   ido-auto-merge-delay-time 5
+   projectile-enable-caching nil
+   projectile-git-command "ag --nocolor -l -g \"\""
+   scss-sass-command "/Users/andy/\.rvm/gems/ruby-2\.1\.5@poc-oliver/bin/sass"
+   )
 
+  (global-vi-tilde-fringe-mode nil)
   (global-linum-mode 1)
 
   (add-hook 'after-save-hook 'whitespace-cleanup)
@@ -251,6 +263,9 @@ layers configuration. You are free ;TODO: o put any user code."
   ;; js2-mode config
   (add-hook 'js2-mode-hook 'spacemacs/toggle-syntax-checking-on)
   (add-hook 'js2-mode-hook (lambda () (tern-mode -1)))
+  (setq-default company-backends-js2-mode '((company-tern :with company-dabbrev)
+                                            company-files
+                                            company-dabbrev))
 
   ;; magit config
   (add-hook 'git-commit-mode-hook
@@ -258,6 +273,13 @@ layers configuration. You are free ;TODO: o put any user code."
 
   ;; powerline config
   (setq powerline-default-separator 'alternate)
+
+  ;; git config
+  (setq magit-pull-arguments "--reabse")
+
+  ;; clean buffers everynight
+  (midnight-mode t nil (midight))
+  (sh-indentation 2)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -267,17 +289,13 @@ layers configuration. You are free ;TODO: o put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(delete-selection-mode t)
- '(flycheck-sass-executable "/Users/andy/.rvm/gems/ruby-2.1.5@poc-oliver/bin/sass")
- '(ido-auto-merge-delay-time 5)
- '(projectile-enable-caching nil)
- '(projectile-git-command "ag --nocolor -l -g \"\"")
- '(scss-sass-command
-   (quote /Users/andy/\.rvm/gems/ruby-2\.1\.5@poc-oliver/bin/sass)))
-(custom-set-faces
+)
+ (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#1B1D1E" :foreground "#F8F8F2" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "nil" :family "Inconsolata-g for Powerline"))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(fringe ((t (:background "#272822" :foreground "#F8F8F2" :width normal)))))
