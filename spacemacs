@@ -31,6 +31,7 @@ values."
      javascript
      react
      floobits
+     spotify
      ;; markdown
      ;; org
      (shell :variables
@@ -40,12 +41,16 @@ values."
      (syntax-checking :variables syntax-checking-enable-tooltips nil)
      version-control
      (osx :variables osx-use-option-as-meta nil)
+     themes-megapack
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     scratch
+     )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
