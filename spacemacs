@@ -30,6 +30,7 @@ values."
      git
      javascript
      react
+     markdown
      floobits
      spotify
      ;; markdown
@@ -89,9 +90,9 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         molokai
                          spacemacs-dark
                          spacemacs-light
+                         molokai
                          )
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -247,11 +248,13 @@ layers configuration. You are free ;TODO: o put any user code."
    css-indent-offset 2
    delete-selection-mode t
    flycheck-sass-executable "/Users/andy/.rvm/gems/ruby-2.1.5@poc-oliver/bin/sass"
+   flycheck-scss-executable "/Users/andy/.rvm/gems/ruby-2.1.5@poc-oliver/bin/sass"
    global-evil-search-highlight-persist nil
    ido-auto-merge-delay-time 5
    projectile-enable-caching nil
    projectile-git-command "ag --nocolor -l -g \"\""
    scss-sass-command "/Users/andy/\.rvm/gems/ruby-2\.1\.5@poc-oliver/bin/sass"
+   projectile-switch-project-action 'projectile-dired
    )
 
   (global-vi-tilde-fringe-mode nil)
@@ -270,12 +273,13 @@ layers configuration. You are free ;TODO: o put any user code."
   ;; magit config
   (add-hook 'git-commit-mode-hook
             (lambda () (local-set-key (kbd "C-x C-s") 'with-editor-finish)))
+  (setq
+   magit-pull-arguments "--rebase"
+   magit-save-repository-buffers nil
+   )
 
   ;; powerline config
   (setq powerline-default-separator 'alternate)
-
-  ;; git config
-  (setq magit-pull-arguments "--reabse")
 
   ;; clean buffers everynight
   (midnight-mode t nil (midight))
@@ -283,14 +287,21 @@ layers configuration. You are free ;TODO: o put any user code."
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
+;;r auto-generate custom variable definitions.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
- (custom-set-faces
+ '(flycheck-emacs-lisp-load-path (quote inherit))
+ '(flycheck-standard-error-navigation nil)
+ '(web-mode-attr-indent-offset 2)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-enable-auto-pairing nil)
+ '(web-mode-indent-style 1)
+ '(web-mode-markup-indent-offset 2))
+
+(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
