@@ -1,6 +1,8 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
+(load-file "~/.spacemacs-functions.el")
+(require 'spacemacs-functions)
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -51,6 +53,7 @@ values."
    dotspacemacs-additional-packages
    '(
      scratch
+     move-dup
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -213,6 +216,8 @@ user code."
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free ;TODO: o put any user code."
+
+  ;; keybindings
   (define-key key-translation-map "\C-j" "\C-x")
   (global-set-key (kbd "M-\\") 'spacemacs/comment-or-uncomment-lines)
   (global-set-key (kbd "C-x C-s") 'force-save)
@@ -220,6 +225,13 @@ layers configuration. You are free ;TODO: o put any user code."
   (global-set-key (kbd "C-=") 'text-scale-increase)
   (global-set-key (kbd "C--") 'text-scale-decrease)
   (global-set-key (kbd "C-0") 'text-scale-adjust)
+  (global-set-key (kbd "S-<backspace>") 'pop-to-mark-command)
+  (global-set-key (kbd "M-P") 'md/duplicate-up)
+  (global-set-key (kbd "M-N") 'md/duplicate-down)
+  (global-set-key (kbd "C-S-p") 'md/move-lines-up)
+  (global-set-key (kbd "C-S-n") 'md/move-lines-down)
+
+  ;; settings
   (setq-default
    global-auto-complete-mode t
    js-indent-level 2
@@ -255,26 +267,31 @@ layers configuration. You are free ;TODO: o put any user code."
    projectile-git-command "ag --nocolor -l -g \"\""
    scss-sass-command "/Users/andy/\.rvm/gems/ruby-2\.1\.5@poc-oliver/bin/sass"
    projectile-switch-project-action 'projectile-dired
+   evil-ex-search-persistent-highlight nil
    )
 
   (global-vi-tilde-fringe-mode nil)
   (global-linum-mode 1)
 
-  (add-hook 'after-save-hook 'whitespace-cleanup)
   (add-hook 'term-mode-hook 'spacemacs/toggle-line-numbers-off)
 
   ;; js2-mode config
   (add-hook 'js2-mode-hook 'spacemacs/toggle-syntax-checking-on)
-  (add-hook 'js2-mode-hook (lambda () (tern-mode -1)))
+  (add-hook 'js2-mode-hook (lambda ()
+                             (eslint-set-closest)
+                             (tern-mode -1)))
   (setq-default company-backends-js2-mode '((company-tern :with company-dabbrev)
                                             company-files
                                             company-dabbrev))
+
+  ;; web-mode config
+  (add-hook 'web-mode-hook (lambda ()
+                             (eslint-set-closest)))
 
   ;; magit config
   (add-hook 'git-commit-mode-hook
             (lambda () (local-set-key (kbd "C-x C-s") 'with-editor-finish)))
   (setq
-   magit-pull-arguments "--rebase"
    magit-save-repository-buffers nil
    )
 
@@ -284,10 +301,25 @@ layers configuration. You are free ;TODO: o put any user code."
   ;; clean buffers everynight
   (midnight-mode t nil (midight))
   (sh-indentation 2)
+
+  (defun copy-word ()
+    (interactive)
+    (kill-new (thing-at-point 'word)))
+
+  (global-set-key (kbd "M-W") 'copy-word)
+
+  ;; open splits vertically first
+  (setq split-height-threshold 80)
+  (setq split-width-threshold 160)
+
+  ;; save hooks
+  (add-hook 'before-save-hook (lambda ()
+                                (auto-make-directory)
+                                (whitespace-cleanup)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
-;;r auto-generate custom variable definitions.
+;; auto-generate custom variable definitions.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -296,17 +328,16 @@ layers configuration. You are free ;TODO: o put any user code."
  '(flycheck-emacs-lisp-load-path (quote inherit))
  '(flycheck-standard-error-navigation nil)
  '(web-mode-attr-indent-offset 2)
- '(web-mode-code-indent-offset 2)
- '(web-mode-enable-auto-pairing nil)
- '(web-mode-indent-style 1)
- '(web-mode-markup-indent-offset 2))
+ '(web-mode-code-indent-offset 2 t)
+ '(web-mode-enable-auto-pairing nil t)
+ '(web-mode-indent-style 1 t)
+ '(web-mode-markup-indent-offset 2 t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#1B1D1E" :foreground "#F8F8F2" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "nil" :family "Inconsolata-g for Powerline"))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
  '(fringe ((t (:background "#272822" :foreground "#F8F8F2" :width normal)))))
