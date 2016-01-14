@@ -230,6 +230,10 @@ layers configuration. You are free ;TODO: o put any user code."
   (global-set-key (kbd "M-N") 'md/duplicate-down)
   (global-set-key (kbd "C-S-p") 'md/move-lines-up)
   (global-set-key (kbd "C-S-n") 'md/move-lines-down)
+  (global-set-key (kbd "M-C-h") 'evil-window-left)
+  (global-set-key (kbd "M-C-l") 'evil-window-right)
+  (global-set-key (kbd "M-C-k") 'evil-window-up)
+  (global-set-key (kbd "M-C-j") 'evil-window-down)
 
   ;; settings
   (setq-default
