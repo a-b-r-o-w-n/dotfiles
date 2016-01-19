@@ -295,4 +295,8 @@ user code."
                                 (auto-make-directory)
                                 (whitespace-cleanup)))
 
+
+  (add-to-list 'auto-mode-alist '("zshrc\\'" . shell-script-mode))
+  (add-to-list 'auto-mode-alist '("eslintrc\\'" . json-mode))
+  (add-to-list 'auto-mode-alist '("babelrc\\'" . json-mode))
   )
