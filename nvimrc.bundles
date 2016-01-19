@@ -1,5 +1,5 @@
 filetype off
-call plug#begin('~/.nvim/bundle')
+call plug#begin('~/.config/nvim/bundle')
 
 Plug 'tomasr/molokai'
 " Plug 'flazz/vim-colorschemes'

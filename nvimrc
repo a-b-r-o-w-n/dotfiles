@@ -30,7 +30,7 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load bundles
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source ~/.nvimrc.bundles
+source ~/.config/nvim/.nvimrc.bundles
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors
@@ -94,4 +94,4 @@ autocmd BufNewFile,BufRead *.jsx set filetype=javascript syntax=javascript.jsx
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load scripts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source ~/.nvimrc.scripts
+source ~/.config/nvim/.nvimrc.scripts
