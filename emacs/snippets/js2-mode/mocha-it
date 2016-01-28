@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+#name : mocha-it
+#key : it
+#contributor : Andy Brown
+# --
+it('$1', () => {
+  $2
+})

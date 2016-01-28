@@ -23,8 +23,12 @@
  '(js2-strict-trailing-comma-warning nil)
  '(js2-strict-var-hides-function-arg-warning nil)
  '(js2-strict-var-redeclaration-warning nil)
+ '(linum-format "%4d ")
+ '(magit-branch-arguments nil)
  '(magit-save-repository-buffers nil)
  '(midnight-mode t nil (midnight))
+ '(ns-command-modifier (quote meta))
+ '(projectile-create-missing-test-files nil)
  '(projectile-git-command
    "ag --nocolor --files-with-matches --hidden --ignore \".git/\" -g \"\"")
  '(projectile-global-mode t)
@@ -33,7 +37,10 @@
  '(web-mode-code-indent-offset 2)
  '(web-mode-enable-auto-pairing nil t)
  '(web-mode-indent-style 1)
- '(web-mode-markup-indent-offset 2))
+ '(web-mode-markup-indent-offset 2)
+ '(yas-snippet-dirs
+   (quote
+    ("/Users/andy/dotfiles/emacs/snippets/" yas-installed-snippets-dir "/Users/andy/.emacs.d/layers/auto-completion/snippets")) nil (yasnippet)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -41,4 +48,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(flycheck-error ((t (:underline "#e0211d"))))
+ '(flycheck-fringe-error ((t (:foreground "#e0211d" :weight bold))))
+ '(linum ((t (:background "#212026" :foreground "#44505c" :family "Inconsolatag")))))

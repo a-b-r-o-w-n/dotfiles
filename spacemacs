@@ -60,6 +60,7 @@ values."
    dotspacemacs-excluded-packages
    '(
      tern
+     evil-search-highlight-persist
      )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -105,7 +106,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Inconsolatag"
+   dotspacemacs-default-font '("Source Code Pro"
                                :size 12
                                :weight normal
                                :width normal
@@ -245,16 +246,15 @@ user code."
    magit-pull-arguments nil
    magit-push-arguments (quote ("--set-upstream"))
    magit-save-repository-buffers nil
-   mac-command-modifier 'meta
    css-indent-offset 2
    delete-selection-mode t
-   global-evil-search-highlight-persist nil
    ido-auto-merge-delay-time 5
    projectile-enable-caching nil
    scss-sass-command "/Users/andy/\.rvm/gems/ruby-2\.1\.5@poc-oliver/bin/sass"
    projectile-switch-project-action 'projectile-dired
-   evil-ex-search-persistent-highlight nil
    )
+
+  (setq paradox-github-token "7bb8854250764b96bd30e11f51f280d83d0f61fd")
 
   (global-vi-tilde-fringe-mode nil)
   (global-linum-mode 1)
@@ -264,11 +264,11 @@ user code."
   ;; js2-mode config
   (add-hook 'js2-mode-hook 'spacemacs/toggle-syntax-checking-on)
   (add-hook 'js2-mode-hook (lambda ()
-                             (eslint-set-closest)))
+                             (eslint-set-closest-executable)))
 
   ;; web-mode config
   (add-hook 'web-mode-hook (lambda ()
-                             (eslint-set-closest)))
+                             (eslint-set-closest-executable)))
 
   ;; magit config
   (add-hook 'git-commit-mode-hook
@@ -299,4 +299,7 @@ user code."
   (add-to-list 'auto-mode-alist '("zshrc\\'" . shell-script-mode))
   (add-to-list 'auto-mode-alist '("eslintrc\\'" . json-mode))
   (add-to-list 'auto-mode-alist '("babelrc\\'" . json-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
+
+  (projectile-register-project-type 'npm '("package.json") "npm start" "npm test")
   )

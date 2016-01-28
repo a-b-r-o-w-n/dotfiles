@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+#name : mocha-describe
+#key : des
+#contributor : Andy Brown
+# --
+describe('$1', () => {
+  $2
+})

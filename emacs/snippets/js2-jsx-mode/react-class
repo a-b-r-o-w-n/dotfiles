@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+#name : react-class
+#key : rcom
+#contributor : Andy Brown
+# --
+const React = require('react')
+const { Component, PropTypes } = React
+
+class $1 extends Component {
+  static displayName = '$1'
+
+  static propTypes = {
+
+  }
+
+  render() {
+    return $2
+  }
+}
+
+module.exports = $1
