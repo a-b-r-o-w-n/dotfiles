@@ -260,8 +260,6 @@ user code."
    projectile-switch-project-action 'projectile-dired
    )
 
-  (setq paradox-github-token "7bb8854250764b96bd30e11f51f280d83d0f61fd")
-
   (global-vi-tilde-fringe-mode nil)
   (global-linum-mode 1)
 
