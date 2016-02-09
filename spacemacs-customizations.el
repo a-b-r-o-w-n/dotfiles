@@ -11,7 +11,6 @@
  '(flycheck-sass-executable "/Users/andy/.rvm/gems/ruby-2.1.5@poc-oliver/bin/sass")
  '(flycheck-scss-executable "/Users/andy/.rvm/gems/ruby-2.1.5@poc-oliver/bin/sass")
  '(flycheck-standard-error-navigation nil)
- '(global-auto-complete-mode t)
  '(js2-basic-offset 2)
  '(js2-highlight-level 3)
  '(js2-include-node-externs t)
