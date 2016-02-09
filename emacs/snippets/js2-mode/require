@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+#name : require
+#key : rq
+#contributor : Andy Brown
+# --
+require('$1')
