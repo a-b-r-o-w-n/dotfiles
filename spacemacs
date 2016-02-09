@@ -55,12 +55,16 @@ values."
      scratch
      move-dup
      dockerfile-mode
+     restclient
+     gist
+     zop-to-char
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
    '(
      tern
      evil-search-highlight-persist
+     web-mode
      )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -237,9 +241,11 @@ user code."
   (global-set-key (kbd "M-C-l") 'evil-window-right)
   (global-set-key (kbd "M-C-k") 'evil-window-up)
   (global-set-key (kbd "M-C-j") 'evil-window-down)
+  (global-set-key (kbd "C-S-c") 'evil-surround-change)
+  (global-set-key (kbd "M-z") 'zop-to-char)
 
   ;; settings
-  (setq-default
+  (setq
    js-indent-level 2
    magit-commit-arguments (quote ("--verbose"))
    magit-fetch-arguments (quote ("--prune"))
@@ -279,6 +285,7 @@ user code."
 
   ;; powerline config
   (setq powerline-default-separator 'alternate)
+  (split-window-sensibly)
 
   (defun copy-word ()
     (interactive)
@@ -302,4 +309,9 @@ user code."
   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
 
   (projectile-register-project-type 'npm '("package.json") "npm start" "npm test")
+
+  (add-hook
+   'dired-mode-hook
+   (lambda ()
+     (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)))
   )
