@@ -42,11 +42,11 @@ export VISUAL='nvim'
 export EDITOR=$VISUAL
 
 # load thoughtbot/dotfiles scripts
+export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$HOME/.bin:$PATH"
 
 # mkdir .git/safe in the root of repositories you trust
 export GOPATH=$HOME/src/go
-export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.bin"
 export PATH="$PATH:$GOPATH/bin"
 
