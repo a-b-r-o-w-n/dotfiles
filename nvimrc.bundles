@@ -147,8 +147,8 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocomplete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'Valloric/YouCompleteMe'
-set completeopt-=preview
+" Plug 'Valloric/YouCompleteMe'
+" set completeopt-=preview
 
 call plug#end()
 filetype on
