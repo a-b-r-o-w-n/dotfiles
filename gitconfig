@@ -3,15 +3,15 @@
 [user]
   email = asbrown002@gmail.com
   name = Andy Brown
-	username = astephenb
+  username = astephenb
 [push]
-	default = matching
-	followTags = true
+  default = matching
+  followTags = true
 [core]
-	excludesfile = /Users/andy/.gitignore
+  excludesfile = /Users/andy/.gitignore
 [alias]
-  c = commit -v
-	co = checkout
+  c = commit
+  co = checkout
   a = add
   m = merge
   s = status -s
@@ -35,4 +35,4 @@
 [merge]
   tool = p4merge
 [pull]
-	rebase = true
+  rebase = true
