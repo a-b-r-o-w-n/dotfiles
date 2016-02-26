@@ -40,7 +40,7 @@ values."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     ;; spell-checking
+     spell-checking
      (syntax-checking :variables syntax-checking-enable-tooltips nil)
      version-control
      (osx :variables osx-use-option-as-meta nil)
@@ -97,21 +97,22 @@ values."
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
-   dotspacemacs-startup-lists '(recents projects)
+   dotspacemacs-startup-lists '(projects recents)
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         monokai
+                         molokai-andy
                          spacemacs-dark
                          spacemacs-light
-                         molokai
                          )
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 12
+                               :size 13
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -133,6 +134,14 @@ values."
    dotspacemacs-command-key ":"
    ;; If non nil `Y' is remapped to `y$'. (default t)
    dotspacemacs-remap-Y-to-y$ t
+   ;; Name of the default layout (default "Default")
+   dotspacemacs-default-layout-name "Default"
+   ;; If non nil the default layout name is displayed in the mode-line.
+   ;; (default nil)
+   dotspacemacs-display-default-layout nil
+   ;; If non nil then the last auto saved layouts are resume automatically upon
+   ;; start. (default nil)
+   dotspacemacs-auto-resume-layouts nil
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
@@ -189,6 +198,10 @@ values."
    ;; scrolling overrides the default behavior of Emacs which recenters the
    ;; point when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
+   ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
+   ;; derivatives. If set to `relative', also turns on relative line numbers.
+   ;; (default nil)
+   dotspacemacs-line-numbers t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -207,6 +220,12 @@ values."
    ;; specified with an installed package.
    ;; Not used for now. (default nil)
    dotspacemacs-default-package-repository nil
+   ;; Delete whitespace while saving buffer. Possible values are `all'
+   ;; to aggressively delete empty line and long sequences of whitespace,
+   ;; `trailing' to delete only the whitespace at end of lines, `changed'to
+   ;; delete only whitespace for changed lines or `nil' to disable cleanup.
+   ;; (default nil)
+   dotspacemacs-whitespace-cleanup 'changed
    ))
 
 (defun dotspacemacs/user-init ()
@@ -232,7 +251,7 @@ user code."
   (global-set-key (kbd "C-=") 'text-scale-increase)
   (global-set-key (kbd "C--") 'text-scale-decrease)
   (global-set-key (kbd "C-0") 'text-scale-adjust)
-  (global-set-key (kbd "S-<backspace>") 'pop-to-mark-command)
+  (global-set-key (kbd "C-<tab>") 'pop-to-mark-command)
   (global-set-key (kbd "M-P") 'md/duplicate-up)
   (global-set-key (kbd "M-N") 'md/duplicate-down)
   (global-set-key (kbd "C-S-p") 'md/move-lines-up)
@@ -243,6 +262,7 @@ user code."
   (global-set-key (kbd "M-C-j") 'evil-window-down)
   (global-set-key (kbd "C-S-c") 'evil-surround-change)
   (global-set-key (kbd "M-z") 'zop-to-char)
+  (define-key flyspell-mode-map (kbd "C-,") 'spacemacs/indent-region-or-buffer)
 
   ;; settings
   (setq
@@ -258,10 +278,12 @@ user code."
    projectile-enable-caching nil
    scss-sass-command "/Users/andy/\.rvm/gems/ruby-2\.1\.5@poc-oliver/bin/sass"
    projectile-switch-project-action 'projectile-dired
+   custom-theme-directory "~/dotfiles/emacs/themes"
    )
 
-  (global-vi-tilde-fringe-mode nil)
+  (global-vi-tilde-fringe-mode -1)
   (global-linum-mode 1)
+  (setq flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face))
 
   (add-hook 'term-mode-hook 'spacemacs/toggle-line-numbers-off)
 
@@ -274,25 +296,17 @@ user code."
   (add-hook 'web-mode-hook (lambda ()
                              (eslint-set-closest-executable)))
 
-  ;; magit config
-  (add-hook 'git-commit-mode-hook
-            (lambda () (local-set-key (kbd "C-x C-s") 'with-editor-finish)))
   (setq
    magit-save-repository-buffers nil
    )
 
   ;; powerline config
   (setq powerline-default-separator 'alternate)
-  (split-window-sensibly)
-
-  (defun copy-word ()
-    (interactive)
-    (kill-new (thing-at-point 'word)))
 
   (global-set-key (kbd "M-W") 'copy-word)
 
   ;; open splits vertically first
-  (setq split-height-threshold 80)
+  (setq split-height-threshold 74)
   (setq split-width-threshold 160)
 
   ;; save hooks
