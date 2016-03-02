@@ -5,13 +5,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ahs-case-fold-search nil)
  '(ansi-color-names-vector
    ["#272822" "#F92672" "#A6E22E" "#E6DB74" "#66D9EF" "#FD5FF0" "#A1EFE4" "#F8F8F2"])
+ '(case-fold-search nil)
  '(compilation-message-face (quote default))
  '(create-lockfiles nil)
  '(custom-safe-themes
    (quote
     ("38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" "086354c2a7f80838d080dc668cb92b95994006533b57cd90014697be084897df" "66c422bb192c60c7655b1c527e77d46aa712f0b501ab81887fadc654de95cee6" "78d2700ddf40a1f9990e03b2057d116cd307fde13fe3ba3788321ae393631927" "c489f4b08be68f497965026e4352a72be3366d9ad842740a467f15f897fd57db" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" default)))
+ '(delete-selection-mode t)
  '(exec-path-from-shell-check-startup-files nil)
  '(fci-rule-color "#3E3D31" t)
  '(flycheck-emacs-lisp-load-path (quote inherit) t)

@@ -273,17 +273,17 @@ user code."
    magit-push-arguments (quote ("--set-upstream"))
    magit-save-repository-buffers nil
    css-indent-offset 2
-   delete-selection-mode t
    ido-auto-merge-delay-time 5
    projectile-enable-caching nil
    scss-sass-command "/Users/andy/\.rvm/gems/ruby-2\.1\.5@poc-oliver/bin/sass"
    projectile-switch-project-action 'projectile-dired
    custom-theme-directory "~/dotfiles/emacs/themes"
+   magit-save-repository-buffers nil
+   flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face)
    )
 
   (global-vi-tilde-fringe-mode -1)
   (global-linum-mode 1)
-  (setq flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face))
 
   (add-hook 'term-mode-hook 'spacemacs/toggle-line-numbers-off)
 
@@ -295,10 +295,6 @@ user code."
   ;; web-mode config
   (add-hook 'web-mode-hook (lambda ()
                              (eslint-set-closest-executable)))
-
-  (setq
-   magit-save-repository-buffers nil
-   )
 
   ;; powerline config
   (setq powerline-default-separator 'alternate)
