@@ -35,6 +35,8 @@ values."
      markdown
      floobits
      spotify
+     go
+     spacemacs-layouts
      ;; markdown
      ;; org
      (shell :variables
@@ -111,8 +113,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   dotspacemacs-default-font '("Inconsolatag"
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -262,24 +264,24 @@ user code."
   (global-set-key (kbd "M-C-j") 'evil-window-down)
   (global-set-key (kbd "C-S-c") 'evil-surround-change)
   (global-set-key (kbd "M-z") 'zop-to-char)
+  (global-set-key (kbd "M-m p a") 'projectile-find-implementation-or-test-other-window)
+  (global-set-key (kbd "M-m p A") 'projectile-find-implementation-or-test)
   (define-key flyspell-mode-map (kbd "C-,") 'spacemacs/indent-region-or-buffer)
 
   ;; settings
   (setq
-   js-indent-level 2
-   magit-commit-arguments (quote ("--verbose"))
-   magit-fetch-arguments (quote ("--prune"))
-   magit-pull-arguments nil
-   magit-push-arguments (quote ("--set-upstream"))
-   magit-save-repository-buffers nil
-   css-indent-offset 2
-   ido-auto-merge-delay-time 5
    projectile-enable-caching nil
    scss-sass-command "/Users/andy/\.rvm/gems/ruby-2\.1\.5@poc-oliver/bin/sass"
    projectile-switch-project-action 'projectile-dired
    custom-theme-directory "~/dotfiles/emacs/themes"
    magit-save-repository-buffers nil
    flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face)
+
+   ;; spaceline
+   spaceline-minor-modes-p nil
+
+   ;; miscellaneous
+   require-final-newline t
    )
 
   (global-vi-tilde-fringe-mode -1)
@@ -302,7 +304,7 @@ user code."
   (global-set-key (kbd "M-W") 'copy-word)
 
   ;; open splits vertically first
-  (setq split-height-threshold 74)
+  (setq split-height-threshold 69)
   (setq split-width-threshold 160)
 
   ;; save hooks
@@ -322,4 +324,10 @@ user code."
    'dired-mode-hook
    (lambda ()
      (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)))
+
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (setq
+               tab-width 4
+               indent-tabs-mode 1)))
   )

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+#name : mocha-describe-only
+#key : deso
+#contributor : Andy Brown
+# --
+describe.only('$1', () => {
+  $2
+})
