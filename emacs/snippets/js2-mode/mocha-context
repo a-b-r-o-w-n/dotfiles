@@ -3,6 +3,6 @@
 #key : con
 #contributor : Andy Brown
 # --
-context('$1', () => {
-  $2
+context('${1:doc string}', () => {
+  $0
 })

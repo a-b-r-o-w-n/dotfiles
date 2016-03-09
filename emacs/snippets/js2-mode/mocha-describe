@@ -3,6 +3,6 @@
 #key : des
 #contributor : Andy Brown
 # --
-describe('$1', () => {
-  $2
+describe${1:.only}('${2:doc string}', () => {
+  $0
 })

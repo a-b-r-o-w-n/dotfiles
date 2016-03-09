@@ -4,5 +4,5 @@
 #contributor : Andy Brown
 # --
 beforeEach(() => {
-  $1
+  $0
 })
