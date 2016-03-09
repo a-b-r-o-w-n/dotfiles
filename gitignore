@@ -12,3 +12,6 @@ zeus.json
 
 .floo*
 .tern-port
+
+.github_access_token
+.pivotal_api_token
