@@ -60,22 +60,22 @@ know how `split-window-sensibly' determines whether WINDOW can be
 split."
   (let ((window (or window (selected-window))))
     (or (and (window-splittable-p window t)
-       ;; Split window horizontally.
-       (with-selected-window window
-         (split-window-right)))
-  (and (window-splittable-p window)
-       ;; Split window vertically.
-       (with-selected-window window
-         (split-window-below)))
-  (and (eq window (frame-root-window (window-frame window)))
-       (not (window-minibuffer-p window))
-       ;; If WINDOW is the only window on its frame and is not the
-       ;; minibuffer window, try to split it vertically disregarding
-       ;; the value of `split-height-threshold'.
-       (let ((split-height-threshold 0))
-         (when (window-splittable-p window)
-     (with-selected-window window
-       (split-window-below))))))))
+             ;; Split window horizontally.
+             (with-selected-window window
+               (split-window-right)))
+        (and (window-splittable-p window)
+             ;; Split window vertically.
+             (with-selected-window window
+               (split-window-below)))
+        (and (eq window (frame-root-window (window-frame window)))
+             (not (window-minibuffer-p window))
+             ;; If WINDOW is the only window on its frame and is not the
+             ;; minibuffer window, try to split it vertically disregarding
+             ;; the value of `split-height-threshold'.
+             (let ((split-height-threshold 0))
+               (when (window-splittable-p window)
+                 (with-selected-window window
+                   (split-window-below))))))))
 
 (defun load-shell-env (command)
   (interactive)
@@ -89,5 +89,30 @@ split."
 (defun copy-word ()
   (interactive)
   (kill-new (thing-at-point 'word)))
+
+(defun mocha-remove-only ()
+  (interactive)
+  (save-excursion
+    (beginning-of-buffer)
+    (replace-string ".only" "")))
+
+(defun mocha-add-only ()
+  (interactive)
+  (let ((mocha-pattern "\\(^\s*describe\\|^\s*context\\|^\s*it\\)"))
+    (save-excursion
+      (if (search-backward-regexp mocha-pattern nil t)
+          (progn
+            (forward-word)
+            (insert ".only"))
+        (progn
+          (search-forward-regexp mocha-pattern)
+          (insert ".only"))))))
+
+(defun mocha-add-or-remove-only ()
+  (interactive)
+  (if (string-match ".only" (buffer-string))
+      (mocha-remove-only)
+    (mocha-add-only))
+  (force-save))
 
 (provide 'spacemacs-functions)

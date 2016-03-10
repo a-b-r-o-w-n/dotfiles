@@ -291,8 +291,10 @@ user code."
 
   ;; js2-mode config
   (add-hook 'js2-mode-hook 'spacemacs/toggle-syntax-checking-on)
-  (add-hook 'js2-mode-hook (lambda ()
-                             (eslint-set-closest-executable)))
+  (add-hook 'js2-mode-hook
+            (lambda ()
+              (eslint-set-closest-executable)
+              (define-key js2-mode-map (kbd "C-M-.") 'mocha-add-or-remove-only)))
 
   ;; web-mode config
   (add-hook 'web-mode-hook (lambda ()
@@ -304,7 +306,7 @@ user code."
   (global-set-key (kbd "M-W") 'copy-word)
 
   ;; open splits vertically first
-  (setq split-height-threshold 69)
+  (setq split-height-threshold 65)
   (setq split-width-threshold 160)
 
   ;; save hooks
