@@ -4,12 +4,14 @@
 #contributor : Andy Brown
 # --
 const React = require('react')
-const $1 = require('app/components/$2')
+const $1 = require('app/$2')
 
 describe('$1', () => {
   function render(props = {}) {
     return shallowRender(<$1 {...props} />)
   }
 
-  $3
+  it('renders', () => {
+    expect(render()).to.exist
+  })
 })
