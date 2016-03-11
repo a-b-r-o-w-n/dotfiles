@@ -284,6 +284,11 @@ user code."
    require-final-newline t
    )
 
+  ;; spaceline
+  (spaceline-toggle-buffer-encoding-abbrev-off)
+  (spaceline-toggle-buffer-position-off)
+  (spaceline-toggle-hud-off)
+
   (global-vi-tilde-fringe-mode -1)
   (global-linum-mode 1)
 
