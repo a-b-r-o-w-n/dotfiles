@@ -264,7 +264,7 @@ user code."
   (global-set-key (kbd "M-C-j") 'evil-window-down)
   (global-set-key (kbd "C-S-c") 'evil-surround-change)
   (global-set-key (kbd "M-z") 'zop-to-char)
-  (global-set-key (kbd "M-m p a") 'projectile-find-implementation-or-test-other-window)q
+  (global-set-key (kbd "M-m p a") 'projectile-find-implementation-or-test-other-window)
   (global-set-key (kbd "M-m p A") 'projectile-toggle-between-implementation-and-test)
   (define-key flyspell-mode-map (kbd "C-,") 'spacemacs/indent-region-or-buffer)
 
