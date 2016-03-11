@@ -339,11 +339,11 @@ user code."
                indent-tabs-mode 1)))
 
   (add-to-list 'display-buffer-alist
-               `(,(rx bos "*magit:")
+               `(,(rx bos "*magit")
                  (display-buffer-reuse-window
                   display-buffer-in-side-window)
                  (reusable-frames . visible)
-                 (side            . right)
+                 (side            . bottom)
                  (window-height   . 0.4)))
 
   )
