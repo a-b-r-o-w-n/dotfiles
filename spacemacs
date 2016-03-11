@@ -339,7 +339,7 @@ user code."
                indent-tabs-mode 1)))
 
   (add-to-list 'display-buffer-alist
-               `(,(rx bos "*magit")
+               `(,(rx bos "*[Mm]agit")
                  (display-buffer-reuse-window
                   display-buffer-in-side-window)
                  (reusable-frames . visible)
