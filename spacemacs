@@ -264,8 +264,8 @@ user code."
   (global-set-key (kbd "M-C-j") 'evil-window-down)
   (global-set-key (kbd "C-S-c") 'evil-surround-change)
   (global-set-key (kbd "M-z") 'zop-to-char)
-  (global-set-key (kbd "M-m p a") 'projectile-find-implementation-or-test-other-window)
-  (global-set-key (kbd "M-m p A") 'projectile-find-implementation-or-test)
+  (global-set-key (kbd "M-m p a") 'projectile-find-implementation-or-test-other-window)q
+  (global-set-key (kbd "M-m p A") 'projectile-toggle-between-implementation-and-test)
   (define-key flyspell-mode-map (kbd "C-,") 'spacemacs/indent-region-or-buffer)
 
   ;; settings
@@ -332,4 +332,13 @@ user code."
               (setq
                tab-width 4
                indent-tabs-mode 1)))
+
+  (add-to-list 'display-buffer-alist
+               `(,(rx bos "*magit:")
+                 (display-buffer-reuse-window
+                  display-buffer-in-side-window)
+                 (reusable-frames . visible)
+                 (side            . right)
+                 (window-height   . 0.4)))
+
   )
