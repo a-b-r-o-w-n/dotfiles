@@ -60,6 +60,7 @@ values."
      restclient
      gist
      zop-to-char
+     shackle
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
@@ -338,12 +339,7 @@ user code."
                tab-width 4
                indent-tabs-mode 1)))
 
-  (add-to-list 'display-buffer-alist
-               `(,(rx bos "*[Mm]agit")
-                 (display-buffer-reuse-window
-                  display-buffer-in-side-window)
-                 (reusable-frames . visible)
-                 (side            . bottom)
-                 (window-height   . 0.4)))
-
+  (setq shackle-rules '(
+                        (magit-status-mode :align 'below :size 90)))
+  (shackle-mode)
   )
