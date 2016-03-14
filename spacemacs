@@ -325,6 +325,7 @@ user code."
   (add-to-list 'auto-mode-alist '("eslintrc\\'" . json-mode))
   (add-to-list 'auto-mode-alist '("babelrc\\'" . json-mode))
   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
+  (add-to-list 'auto-mode-alist '("envrc\\'" . shell-script-mode))
 
   (projectile-register-project-type 'npm '("package.json") "npm start" "npm test")
 
