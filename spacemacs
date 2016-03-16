@@ -326,6 +326,7 @@ user code."
   (add-to-list 'auto-mode-alist '("babelrc\\'" . json-mode))
   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
   (add-to-list 'auto-mode-alist '("envrc\\'" . shell-script-mode))
+  (add-to-list 'auto-mode-alist '("envrc.local\\'" . shell-script-mode))
 
   (projectile-register-project-type 'npm '("package.json") "npm start" "npm test")
 
@@ -341,6 +342,6 @@ user code."
                indent-tabs-mode 1)))
 
   (setq shackle-rules '(
-                        (magit-status-mode :align 'below :size 90)))
+                        (magit-status-mode :align below)))
   (shackle-mode)
   )
