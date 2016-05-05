@@ -15,9 +15,6 @@ LINKED_FILES = %w(
   nvimrc.bundles
   nvimrc.scripts
   rspec
-  spacemacs
-  spacemacs-functions.el
-  spacemacs-customizations.el
   tmux.conf
   vimrc
   vimrc.bundles

@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-#name : mocha-context
-#key : con
-#contributor : Andy Brown
-# --
-context('${1:doc string}', () => {
-  $0
-})
