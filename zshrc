@@ -43,7 +43,7 @@ export EDITOR=$VISUAL
 
 # load thoughtbot/dotfiles scripts
 export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 # mkdir .git/safe in the root of repositories you trust
 export GOPATH=$HOME/go
