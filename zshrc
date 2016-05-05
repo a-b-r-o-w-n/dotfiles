@@ -23,6 +23,7 @@ export CLICOLOR=1
 
 # history settings
 setopt histignoredups
+setopt histappend
 HISTFILE=~/.zsh_history
 HISTSIZE=4096
 SAVEHIST=4096
