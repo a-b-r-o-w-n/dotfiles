@@ -152,6 +152,9 @@ export PS1='[$TIMESTAMP] [%{$fg_bold[blue]%}%~%{$reset_color%}]$(git_prompt_info
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
+
+source /usr/local/share/zsh/site-functions/_aws
+
 # source docker env
 source_docker_env() {
     docker_status=$(docker-machine status default)
