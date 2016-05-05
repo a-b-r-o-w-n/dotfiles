@@ -151,3 +151,20 @@ export PS1='[$TIMESTAMP] [%{$fg_bold[blue]%}%~%{$reset_color%}]$(git_prompt_info
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
+# source docker env
+source_docker_env() {
+    docker_status=$(docker-machine status default)
+
+    case "$docker_status" in
+        Stopped)
+            echo "Docker machine stopped. Starting now..."
+            docker-machine start default > /dev/null
+            eval "$(docker-machine env default)"
+            ;;
+        *)
+            eval "$(docker-machine env default)"
+            ;;
+    esac
+}
+
+source_docker_env
