@@ -12,6 +12,7 @@
 [alias]
   c = commit
   co = checkout
+  cleanbr = !git branch --no-color --merged | grep -v \" \\(master\\|develop\\|integration\\|production\\|staging\\)$\" | grep -v `git rev-parse --abbrev-ref HEAD` | xargs -L1 git branch -d
   a = add
   m = merge
   s = status -s
@@ -36,3 +37,9 @@
   tool = p4merge
 [pull]
   rebase = true
+[branch]
+  autoSetupMerge = true
+[github]
+	user = astephenb
+	password = 2x9KMennoQnL^9uh!6W2
+	oauth-token = a58454d8d0da592c7f141a4c12b9e3bbfd6593ae
