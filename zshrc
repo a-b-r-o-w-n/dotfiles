@@ -48,7 +48,6 @@ export PATH="$HOME/bin:$PATH"
 
 # mkdir .git/safe in the root of repositories you trust
 export GOPATH=$HOME/go
-export PATH="$PATH:$HOME/.bin"
 export PATH="$PATH:$GOPATH/bin"
 
 # add heroku cli
@@ -154,21 +153,3 @@ export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
 
 source /usr/local/share/zsh/site-functions/_aws
-
-# source docker env
-source_docker_env() {
-    docker_status=$(docker-machine status default)
-
-    case "$docker_status" in
-        Stopped)
-            echo "Docker machine stopped. Starting now..."
-            docker-machine start default > /dev/null
-            eval "$(docker-machine env default)"
-            ;;
-        *)
-            eval "$(docker-machine env default)"
-            ;;
-    esac
-}
-
-source_docker_env
