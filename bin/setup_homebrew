@@ -2,7 +2,6 @@
 
 PACKAGES = %w(
   direnv
-  neovim
   postgresql
   the_silver_searcher
   tmux

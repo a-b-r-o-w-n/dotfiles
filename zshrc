@@ -153,3 +153,7 @@ export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
 
 source /usr/local/share/zsh/site-functions/_aws
+
+if [ -f ~/.zshrc.local ]; then
+  source ~/.zshrc.local
+fi

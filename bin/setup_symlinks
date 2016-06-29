@@ -11,14 +11,8 @@ LINKED_FILES = %w(
   gitconfig
   gitignore
   gitmessage
-  nvimrc
-  nvimrc.bundles
-  nvimrc.scripts
   rspec
   tmux.conf
-  vimrc
-  vimrc.bundles
-  vimrc.scripts
   zsh
   zshrc
 )
