@@ -60,13 +60,6 @@ let g:lightline.active.left = [ [ 'mode', 'paste' ], [ 'filename' ] ]
 let g:lightline.active.right = [ [ 'lineinfo' ], [ 'filetype' ] ]
 let g:lightline.component_function = { 'readonly': 'MyReadonly', 'modified': 'MyModified', 'filename': 'MyFilename' }
 let g:lightline.component_visible_condition = { 'readonly': '(&filetype!="help"&& &readonly)', 'modified': '(&filetype!="help"&&(&modified||!&modifiable))' }
-let g:lightline.separator = {}
-let g:lightline.separator.left = '⮀'
-let g:lightline.separator.right = '⮂'
-
-let g:lightline.subseparator = {}
-let g:lightline.subseparator.left = '⮁'
-let g:lightline.subseparator.right = '⮃'
 
 function! MyModified()
   if &filetype == "help"
