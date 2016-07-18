@@ -20,7 +20,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_custom_ignore = {'dir': 'node_modules'}
 if executable('ag')
-  let g:agprg = 'ag --nogroup --column --nocolor'
+  let g:ag_prg = 'ag --nogroup --column --nocolor'
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
