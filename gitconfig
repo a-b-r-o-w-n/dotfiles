@@ -1,5 +1,7 @@
 [commit]
   template = ~/.gitmessage
+[include]
+  path = ~/.gitconfig.local
 [user]
   email = asbrown002@gmail.com
   name = Andy Brown
