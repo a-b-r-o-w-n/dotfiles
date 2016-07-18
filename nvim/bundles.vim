@@ -55,7 +55,6 @@ nnoremap <Leader>n :silent! call LocationNext()<CR>
 Plug 'itchyny/lightline.vim'
 set noshowmode
 let g:lightline = {}
-let g:lightline.colorscheme = 'molokai'
 let g:lightline.active = {}
 let g:lightline.active.left = [ [ 'mode', 'paste' ], [ 'filename' ] ]
 let g:lightline.active.right = [ [ 'lineinfo' ], [ 'filetype' ] ]
