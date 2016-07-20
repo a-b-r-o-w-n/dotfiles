@@ -55,7 +55,6 @@ export PATH="$PATH:$GOPATH/bin"
 # add heroku cli
 export PATH="$PATH:/usr/local/heroku/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-source ~/.nvm/nvm.sh
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # aliases
@@ -155,6 +154,25 @@ export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
 
 source /usr/local/share/zsh/site-functions/_aws
+
+export NVM_DIR=~/.nvm
+nvm() {
+    unset -f nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+    nvm "$@"
+}
+
+node() {
+    unset -f node
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+    node "$@"
+}
+
+npm() {
+    unset -f npm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+    npm "$@"
+}
 
 if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local
