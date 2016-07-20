@@ -10,7 +10,7 @@
   default = matching
   followTags = true
 [core]
-  excludesfile = /Users/andy/.gitignore
+	excludesfile = ~/.gitignore
 [alias]
   c = commit
   co = checkout
