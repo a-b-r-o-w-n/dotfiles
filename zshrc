@@ -11,7 +11,7 @@ zstyle ':completion:*' menu select=2
 
 # load custom executable functions
 for function in ~/.zsh/functions/*; do
-  source $function
+    source $function
 done
 
 # makes color constants available
@@ -78,15 +78,15 @@ ZSH_THEME_GIT_PROMPT_BEHIND="ↆ"
 ZSH_THEME_GIT_PROMPT_CURRENT="="
 
 parse_git_branch() {
-  (command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD) 2>/dev/null
+    (command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD) 2>/dev/null
 }
 
 parse_git_dirty() {
-  if command git diff-index --quiet HEAD 2> /dev/null; then
-    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
-  else
-    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
-  fi
+    if command git diff-index --quiet HEAD 2> /dev/null; then
+        echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+    else
+        echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+    fi
 }
 
 # show current rvm version
@@ -105,33 +105,34 @@ parse_git_dirty() {
 # }
 
 show_upstream() {
-  upstream_state=''
-  current=true
-  ahead_count=$(git rev-list @{upstream}.. --count 2> /dev/null)
-  if [ $ahead_count ] && (( $ahead_count > 0 )); then
-    upstream_state="%{$fg[yellow]%}$ZSH_THEME_GIT_PROMPT_AHEAD${ahead_count}%{$reset_color%}"
-    current=false
-  fi
+    upstream_state=''
+    current=true
+    ahead_count=$(git rev-list @{upstream}.. --count 2> /dev/null)
+    if [ $ahead_count ] && (( $ahead_count > 0 )); then
+        upstream_state="%{$fg[yellow]%}$ZSH_THEME_GIT_PROMPT_AHEAD${ahead_count}%{$reset_color%}"
+        current=false
+    fi
 
-  behind_count=$(git rev-list HEAD..@{upstream} --count 2> /dev/null)
-  if [ $behind_count ] && (( $behind_count > 0 )); then
-    upstream_state="$upstream_state %{$fg[yellow]%}$ZSH_THEME_GIT_PROMPT_BEHIND${behind_count}%{$reset_color%}"
-    current=false
-  fi
+    behind_count=$(git rev-list HEAD..@{upstream} --count 2> /dev/null)
+    if [ $behind_count ] && (( $behind_count > 0 )); then
+        upstream_state="$upstream_state %{$fg[yellow]%}$ZSH_THEME_GIT_PROMPT_BEHIND${behind_count}%{$reset_color%}"
+        current=false
+    fi
 
-  if $current; then
-    upstream_state="%{$fg[green]%}$ZSH_THEME_GIT_PROMPT_CURRENT%{$reset_color%}"
-  fi
+    if $current; then
+        upstream_state="%{$fg[green]%}$ZSH_THEME_GIT_PROMPT_CURRENT%{$reset_color%}"
+    fi
 
-  echo $upstream_state
+    echo $upstream_state
 }
 
 # adds the current branch name in green
 git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null)
-  if [[ -n $ref ]]; then
-    echo " [%{$fg_bold[magenta]%}${ref#refs/heads/}%{$reset_color%} $(parse_git_dirty) $(show_upstream)]"
-  fi
+    set_window_git_title
+    ref=$(git symbolic-ref HEAD 2> /dev/null)
+    if [[ -n $ref ]]; then
+        echo " [%{$fg_bold[magenta]%}${ref#refs/heads/}%{$reset_color%} $(parse_git_dirty) $(show_upstream)]"
+    fi
 }
 
 # makes color constants available
@@ -155,6 +156,19 @@ export TERM=xterm-256color
 
 source /usr/local/share/zsh/site-functions/_aws
 
+set_window_title() {
+    echo -ne "\e]1;$(basename $1)\a"
+}
+
+set_window_git_title() {
+    ref=$(git root 2> /dev/null)
+    if [[ -n $ref ]]; then
+        set_window_title $ref
+    else
+        set_window_title $(pwd)
+    fi
+}
+
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 # TODO: figure out how to not break things with this
@@ -177,5 +191,5 @@ export NVM_DIR=~/.nvm
 # }
 
 if [ -f ~/.zshrc.local ]; then
-  source ~/.zshrc.local
+    source ~/.zshrc.local
 fi
