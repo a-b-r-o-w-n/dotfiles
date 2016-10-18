@@ -45,8 +45,7 @@ export VISUAL='nvim'
 export EDITOR=$VISUAL
 
 # load thoughtbot/dotfiles scripts
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/sbin:$PATH"
 
 # mkdir .git/safe in the root of repositories you trust
 export GOPATH=$HOME/go
@@ -54,7 +53,6 @@ export PATH="$PATH:$GOPATH/bin"
 
 # add heroku cli
 export PATH="$PATH:/usr/local/heroku/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # aliases
@@ -88,21 +86,6 @@ parse_git_dirty() {
         echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
     fi
 }
-
-# show current rvm version
-# rvm_ruby_version() {
-#   if [[ -f ".ruby-version" ]]; then
-#     echo "[%{$fg_bold[yellow]%}$(~/.rvm/bin/rvm-prompt)%{$reset_color%}]"
-#   fi
-# }
-
-# show current nvm version
-# nvm_node_version() {
-#   if [[ -f ".nvmrc" ]]; then
-#     echo "found nvmrc"
-#     echo "[%{$fg_bold[yellow]%}node-$(nvm version)%{$reset_color%}]"
-#   fi
-# }
 
 show_upstream() {
     upstream_state=''
@@ -170,26 +153,33 @@ set_window_git_title() {
 }
 
 export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-# TODO: figure out how to not break things with this
-# nvm() {
-#     unset -f nvm
-#     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-#     nvm "$@"
-# }
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
 
-# node() {
-#     unset -f node
-#     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-#     node "$@"
-# }
+autoload -U add-zsh-hook
+load-nvmrc() {
+    basedir=${$(git root 2> /dev/null):-$(pwd)}
+    if [[ -f "$basedir/.nvmrc" && -r "$basedir/.nvmrc" ]]; then
+      if [[ $(cat "$basedir/.nvmrc") != $(nvm version) ]]; then
+        nvm use
+      fi
+    fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
-# npm() {
-#     unset -f npm
-#     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-#     npm "$@"
-# }
+source ~/.iterm2_shell_integration.zsh
+iterm2_print_user_vars() {
+    basedir=${$(git root 2> /dev/null):-$(pwd)}
+    iterm2_set_user_var project $(basename $basedir)
+    iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-)
+}
 
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Load RVM
+export PATH="$PATH:$HOME/.rvm/bin"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
