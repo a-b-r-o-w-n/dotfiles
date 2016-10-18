@@ -27,4 +27,4 @@ alias k=clear
 alias dc='docker-compose'
 alias dcb='docker-compose build'
 alias dcr='docker-compose run'
-alias dps='docker ps --format "{{.Image}} - {{.ID}} - {{.RunningFor}} - {{.Command}}"'
+alias dps='docker ps --format "{{.Names}} ({{.Image}}) - {{.ID}} - {{.RunningFor}} - {{.Command}}"'
