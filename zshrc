@@ -40,8 +40,8 @@ setopt extendedglob
 # Allow [ or ] whereever you want
 unsetopt nomatch
 
-# use vim as the visual editor
-export VISUAL='nvim'
+# use atom as the visual editor
+export VISUAL='atom'
 export EDITOR=$VISUAL
 
 # load thoughtbot/dotfiles scripts
