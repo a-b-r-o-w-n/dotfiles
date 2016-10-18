@@ -1,0 +1,4 @@
+# start aws shell with credentials for <name>
+function aws-shell {
+    eval "$(/usr/bin/env aws-creds env $@)";
+}
