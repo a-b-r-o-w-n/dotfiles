@@ -155,17 +155,17 @@ set_window_git_title() {
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
 
-autoload -U add-zsh-hook
-load-nvmrc() {
-    basedir=${$(git root 2> /dev/null):-$(pwd)}
-    if [[ -f "$basedir/.nvmrc" && -r "$basedir/.nvmrc" ]]; then
-      if [[ $(cat "$basedir/.nvmrc") != $(nvm version) ]]; then
-        nvm use
-      fi
-    fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#     basedir=${$(git root 2> /dev/null):-$(pwd)}
+#     if [[ -f "$basedir/.nvmrc" && -r "$basedir/.nvmrc" ]]; then
+#       if [[ $(cat "$basedir/.nvmrc") != $(nvm version) ]]; then
+#         nvm use
+#       fi
+#     fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 
 source ~/.iterm2_shell_integration.zsh
 iterm2_print_user_vars() {
