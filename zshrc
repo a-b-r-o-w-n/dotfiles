@@ -41,7 +41,7 @@ setopt extendedglob
 unsetopt nomatch
 
 # use atom as the visual editor
-export VISUAL='atom'
+export VISUAL='nvim'
 export EDITOR=$VISUAL
 
 # load thoughtbot/dotfiles scripts
