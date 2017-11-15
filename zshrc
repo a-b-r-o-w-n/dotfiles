@@ -62,7 +62,9 @@ export VISUAL='nvim'
 export EDITOR=$VISUAL
 
 export GOPATH=$HOME/go
-export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$GOPATH/bin:$HOME/bin"
+export YARN_BIN_PATH="/usr/local/Cellar/node/8.5.0/bin"
+export PATH="$PATH:$YARN_BIN_PATH"
 
 # aliases
 source ~/dotfiles/aliases
