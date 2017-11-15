@@ -11,6 +11,8 @@
   followTags = true
 [core]
   excludesfile = ~/.gitignore
+  ignorecase = false
+  pager = less -S
 [alias]
   c = commit
   cme = commit --amend --no-edit
