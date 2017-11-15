@@ -16,9 +16,10 @@ alias e="$EDITOR"
 alias v="$VISUAL"
 
 # git
-alias g='git'
-alias grh='g f && g res --hard HEAD@{u}'
-alias gup='g f && g rebase'
+alias glol="git log --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset' --abbrev-commit --date=relative"
+alias glolt="git log --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset%C(magenta)%d%Creset' --abbrev-commit --date=relative"
+alias grhh="git fetch && git reset --hard HEAD@{u}"
+alias gtp="git fetch --prune origin +refs/tags/*:refs/tags/*"
 
 # General
 alias k=clear
