@@ -70,7 +70,7 @@ source ~/dotfiles/aliases
 # load env variables with direnv
 command -v direnv &>/dev/null && eval "$(direnv hook $0)"
 
-if [ "$(uname)" == "Darwin" ]; then
+if [[ "$(uname)" == "Darwin" ]]; then
   set_window_title() {
     echo -ne "\e]1;$(basename $1)\a"
   }
