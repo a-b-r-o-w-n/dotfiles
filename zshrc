@@ -63,40 +63,37 @@ export EDITOR=$VISUAL
 
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin:$HOME/bin"
-export YARN_BIN_PATH="/usr/local/Cellar/node/8.5.0/bin"
-export PATH="$PATH:$YARN_BIN_PATH"
 
 # aliases
 source ~/dotfiles/aliases
 
 # load env variables with direnv
-eval "$(direnv hook $0)"
+command -v direnv &>/dev/null && eval "$(direnv hook $0)"
 
-set_window_title() {
+if [ "$(uname)" == "Darwin" ]; then
+  set_window_title() {
     echo -ne "\e]1;$(basename $1)\a"
-}
+  }
 
-set_window_git_title() {
+  set_window_git_title() {
     ref=$(git root 2> /dev/null)
     if [[ -n $ref ]]; then
-        set_window_title $ref
+      set_window_title $ref
     else
-        set_window_title $(pwd)
+      set_window_title $(pwd)
     fi
-}
+  }
 
-export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
-
-source ~/.iterm2_shell_integration.zsh
-iterm2_print_user_vars() {
+  source ~/.iterm2_shell_integration.zsh
+  iterm2_print_user_vars() {
     basedir=${$(git root 2> /dev/null):-$(pwd)}
     iterm2_set_user_var project $(basename $basedir)
     iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-)
-}
-
-if [ -f ~/.zshrc.local ]; then
-    source ~/.zshrc.local
+  }
 fi
 
-eval "$(rbenv init -)"
+if [ -f ~/.zshrc.local ]; then
+  source ~/.zshrc.local
+fi
+
+command -v rbenv &>/dev/null && eval "$(rbenv init -)"
