@@ -11,7 +11,6 @@ Plug 'mxw/vim-jsx'
 Plug 'moll/vim-node'
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss', 'sass'] }
 Plug 'wesQ3/vim-windowswap'
-Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'tpope/vim-eunuch'
 " Plug 'tpope/vim-git'
 " Plug 'tmhedberg/matchit'
