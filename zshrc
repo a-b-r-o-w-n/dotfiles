@@ -7,7 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="andybrown"
+ZSH_THEME="spaceship"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,14 +51,14 @@ ZSH_THEME="andybrown"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump docker-compose httpie rbenv zsh-autosuggestions)
+plugins=(git autojump docker-compose httpie rbenv zsh-autosuggestions yarn)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
 # use nvim as the visual editor
-export VISUAL='nvim'
+export VISUAL='code -w'
 export EDITOR=$VISUAL
 
 export GOPATH=$HOME/go
@@ -97,3 +97,33 @@ if [ -f ~/.zshrc.local ]; then
 fi
 
 command -v rbenv &>/dev/null && eval "$(rbenv init -)"
+
+# init nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+if [ -f "$(pwd)/.nvmrc" ]; then
+  nvm use
+fi
+
+# configure spaceship
+export SPACESHIP_VI_MODE_SHOW=false
+export SPACESHIP_BATTERY_SHOW=false
+export SPACESHIP_EXEC_TIME_SHOW=false
+export SPACESHIP_KUBECONTEXT_SHOW=false
+export SPACESHIP_EMBER_SHOW=false
+export SPACESHIP_DOTNET_SHOW=false
+export SPACESHIP_PYENV_SHOW=false
+export SPACESHIP_CONDA_SHOW=false
+export SPACESHIP_VENV_SHOW=false
+export SPACESHIP_AWS_SHOW=false
+export SPACESHIP_DOCKER_SHOW=false
+export SPACESHIP_JULIA_SHOW=false
+export SPACESHIP_HASKELL_SHOW=false
+export SPACESHIP_RUST_SHOW=false
+export SPACESHIP_PHP_SHOW=false
+export SPACESHIP_GOLANG_SHOW=false
+export SPACESHIP_SWIFT_SHOW_LOCAL=false
+export SPACESHIP_XCODE_SHOW_LOCAL=false
+export SPACESHIP_ELIXIR_SHOW=false
+export SPACESHIP_PACKAGE_SHOW=false
