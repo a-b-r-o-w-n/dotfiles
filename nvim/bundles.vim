@@ -2,7 +2,6 @@ filetype off
 call plug#begin('~/.config/nvim/bundle')
 
 Plug 'tomasr/molokai'
-" Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
