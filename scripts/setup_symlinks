@@ -1,61 +1,29 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env zsh
 
-OUTPUT_DIR = ARGV[0] || Dir.home
-
-LINKED_FILES = %w(
-  agignore
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+OUTPUT_DIR=$HOME
+FILES_TO_LINK=(
   aliases
-  eslintignore
-  eslintrc
-  gemrc
   gitconfig
   gitignore
-  gitmessage
-  rspec
-  tmux.conf
-  zsh
+  ignore
   zshrc
 )
 
-def link_files
-  LINKED_FILES.each do |file|
-    symlink(file)
-  end
-end
+autoload -U colors && colors
+function print_info {
+  group=$1
+  message="$2"
 
-def symlink(file)
-  dest = "#{OUTPUT_DIR}/.#{file}"
-  return if File.exist?(dest)
+  echo "$fg[magenta][$group]$reset_color $message"
+}
 
-  puts "Linking: #{file}"
-  system('ln', '-s', File.expand_path(file), dest)
-end
+function link_files {
+  for file in "${FILES_TO_LINK[@]}"; do
+    print_info $file "linking to $OUTPUT_DIR/.$file"
+    ln -sf $DIR/$file $OUTPUT_DIR/.$file
+  done
+}
 
-def create_dir(dir)
-  return if Dir.exist?(dir)
-
-  puts "Creating directory: #{dir_name}"
-  system("mkdir #{dir}")
-end
-
-def create_vim_dir
-  dir = File.join(OUTPUT_DIR, '.nvim')
-  create_dir(dir)
-  create_dir("#{dir}/bundle")
-  create_dir("#{dir}/colors")
-  create_dir("#{dir}/spell")
-  create_dir("#{dir}/undo")
-  install_vim_plug(dir)
-end
-
-def install_vim_plug(dir)
-  puts 'Installing vim-plug'
-  repo = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  dest = File.join(dir, 'autoload', 'plug.vim')
-
-  return if File.exist?(dest)
-  system('curl', '--silent', '-fLo', dest, '--create-dirs', repo)
-end
-
+print_info "dotfiles" "symlinking files"
 link_files
-# create_vim_dir

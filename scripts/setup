@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
-bin/setup_symlinks
-bin/setup_homebrew
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+
+$DIR/setup_symlinks
+$DIR/setup_homebrew $1
