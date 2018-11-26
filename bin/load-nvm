@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+if [ -f "$(pwd)/.nvmrc" ]; then
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  nvm use
+fi

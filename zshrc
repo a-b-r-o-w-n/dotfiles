@@ -51,7 +51,7 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump docker-compose httpie rbenv zsh-autosuggestions yarn)
+plugins=(git autojump docker-compose zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,11 +100,6 @@ command -v rbenv &>/dev/null && eval "$(rbenv init -)"
 
 # init nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-if [ -f "$(pwd)/.nvmrc" ]; then
-  nvm use
-fi
 
 # configure spaceship
 export SPACESHIP_VI_MODE_SHOW=false
