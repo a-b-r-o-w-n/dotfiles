@@ -100,6 +100,7 @@ command -v rbenv &>/dev/null && eval "$(rbenv init -)"
 
 # init nvm
 export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
 
 # configure spaceship
 export SPACESHIP_VI_MODE_SHOW=false
