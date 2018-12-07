@@ -7,7 +7,6 @@ fi
 
 PACKAGES=(
   autojump
-  bat
   cmake
   dateutils
   direnv
