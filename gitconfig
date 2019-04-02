@@ -5,7 +5,7 @@
   name = Andy Brown
   username = a-b-r-o-w-n
 [push]
-  default = matching
+	default = current
   followTags = true
 [core]
   excludesfile = ~/.gitignore
@@ -20,6 +20,7 @@
   m = merge
   s = status -s
   f = fetch -p
+  fa= fetch -a
   b = branch
   ba = branch -a
   d = branch -D
@@ -28,6 +29,7 @@
   pr = pull --rebase
   count = shortlong -sn
   l = log --graph --pretty=format:'%Cred%h%Creset -%C(magenta)%d%Creset %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset' --abbrev-commit --date=relative
+  lt = log --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset%C(magenta)%d%Creset' --abbrev-commit --date=relative
   stat = log --graph --pretty=format:'%Cred%h%Creset -%C(magenta)%d%Creset %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset' --abbrev-commit --date=relative --stat
   root = "rev-parse --show-toplevel"
   stashall = !git add . && git stash
@@ -36,3 +38,5 @@
   rebase = true
 [branch]
   autoSetupMerge = true
+[remote]
+	pushDefault = origin
