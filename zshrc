@@ -103,6 +103,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
 
 # configure spaceship
+export SPACESHIP_TIME_SHOW=true
 export SPACESHIP_VI_MODE_SHOW=false
 export SPACESHIP_BATTERY_SHOW=false
 export SPACESHIP_EXEC_TIME_SHOW=false
