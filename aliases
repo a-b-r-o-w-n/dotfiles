@@ -28,3 +28,7 @@ alias dc='docker-compose'
 alias dcb='docker-compose build'
 alias dcr='docker-compose run'
 alias dps='docker ps --format "{{.Names}} ({{.Image}}) - {{.ID}} - {{.RunningFor}} - {{.Command}}"'
+
+# python
+alias python=python3
+alias pip=pip3
