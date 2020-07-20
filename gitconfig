@@ -15,6 +15,7 @@
   c = commit
   cme = commit --amend --no-edit
   co = checkout
+  cp = cherry-pick
   cleanbr = !git branch --no-color --merged | grep -v \" \\(master\\|develop\\|integration\\|production\\|staging\\)$\" | grep -v `git rev-parse --abbrev-ref HEAD` | xargs -L1 git branch -d
   a = add
   m = merge
