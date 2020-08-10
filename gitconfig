@@ -36,6 +36,7 @@
   stashall = !git add . && git stash
   ru = remote update
 [pull]
+  default = current
   rebase = true
 [branch]
   autoSetupMerge = true
@@ -54,3 +55,5 @@
 	tool = vscode
 [difftool "vscode"]
 	cmd = code --wait --diff $LOCAL $REMOTE
+[init]
+	defaultBranch = main
