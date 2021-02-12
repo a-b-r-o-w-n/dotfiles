@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>1.0</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>5BDC5D30-424B-492D-AB51-A132A4AF19DE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EB9DB299-36C1-4DB3-BBB8-30105FECF717</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>CAE2C9D0-4FE7-492B-93DE-6DDFDC06AB90</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EB9DB299-36C1-4DB3-BBB8-30105FECF717</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Ender</string>
+	<key>description</key>
+	<string></string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Toggle Do Not Disturb</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>donot</string>
+				<key>text</key>
+				<string>Toggle Do Not Disturb</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>CAE2C9D0-4FE7-492B-93DE-6DDFDC06AB90</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>tell application "System Events"	option key down	delay 0.1		try		click menu bar item "Notification Center" of menu bar 2 of application process "SystemUIServer"	end try	try		click menu bar item "NotificationCenter, Do Not Disturb enabled" of menu bar 2 of application process "SystemUIServer"	end try		option key upend tell</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>EB9DB299-36C1-4DB3-BBB8-30105FECF717</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>5BDC5D30-424B-492D-AB51-A132A4AF19DE</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Inspired by: http://www.alfredforum.com/topic/4133-toggle-do-not-disturb/
+Script from: https://gist.github.com/Zettt/fd9979100d4603e548d6</string>
+	<key>uidata</key>
+	<dict>
+		<key>5BDC5D30-424B-492D-AB51-A132A4AF19DE</key>
+		<dict>
+			<key>ypos</key>
+			<real>240</real>
+		</dict>
+		<key>CAE2C9D0-4FE7-492B-93DE-6DDFDC06AB90</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>EB9DB299-36C1-4DB3-BBB8-30105FECF717</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>

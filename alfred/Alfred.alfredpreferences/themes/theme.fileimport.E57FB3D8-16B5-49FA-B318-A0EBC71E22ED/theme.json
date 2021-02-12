@@ -1,0 +1,61 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 4,
+      "subtext" : {
+        "size" : 11,
+        "colorSelected" : "#434145FF",
+        "font" : "System",
+        "color" : "#919191D9"
+      },
+      "shortcut" : {
+        "size" : 16,
+        "colorSelected" : "#576266FF",
+        "font" : "System",
+        "color" : "#919191D8"
+      },
+      "backgroundSelected" : "#FEFFFF00",
+      "text" : {
+        "size" : 20,
+        "colorSelected" : "#434145FF",
+        "font" : "System Light",
+        "color" : "#919191D9"
+      },
+      "iconPaddingHorizontal" : 5,
+      "paddingVertical" : 4,
+      "iconSize" : 40
+    },
+    "search" : {
+      "paddingVertical" : 0,
+      "background" : "#FEFFFF00",
+      "spacing" : 10,
+      "text" : {
+        "size" : 36,
+        "colorSelected" : "#576266FF",
+        "font" : "System Light",
+        "color" : "#000000FF"
+      },
+      "backgroundSelected" : "#CACACAFF"
+    },
+    "window" : {
+      "color" : "#FEFFFFD7",
+      "paddingHorizontal" : 10,
+      "width" : 620,
+      "borderPadding" : 10,
+      "borderColor" : "#FEFFFF00",
+      "blur" : 40,
+      "roundness" : 3,
+      "paddingVertical" : 10
+    },
+    "credit" : "Hannes Egler",
+    "separator" : {
+      "color" : "#FEFFFF00",
+      "thickness" : 1
+    },
+    "scrollbar" : {
+      "color" : "#D4D4D4FF",
+      "thickness" : 2
+    },
+    "name" : "Minimalistic Light 3"
+  }
+}
