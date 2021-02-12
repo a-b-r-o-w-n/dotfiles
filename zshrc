@@ -122,9 +122,6 @@ export SPACESHIP_XCODE_SHOW_LOCAL=false
 export SPACESHIP_ELIXIR_SHOW=false
 export SPACESHIP_PACKAGE_SHOW=false
 
-# node veserion switcher
-# https://github.com/jasongin/nvs
-export NVS_HOME="$HOME/.nvs"
-[ -s "$NVS_HOME/nvs.sh" ] && . "$NVS_HOME/nvs.sh"
-
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
