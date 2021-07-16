@@ -28,13 +28,14 @@
   res = reset
   po = push origin
   pr = pull --rebase
-  count = shortlong -sn
+  count = shortlog -sn
   l = log --graph --pretty=format:'%Cred%h%Creset -%C(magenta)%d%Creset %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset' --abbrev-commit --date=relative
   lt = log --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset%C(magenta)%d%Creset' --abbrev-commit --date=relative
   stat = log --graph --pretty=format:'%Cred%h%Creset -%C(magenta)%d%Creset %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset' --abbrev-commit --date=relative --stat
   root = "rev-parse --show-toplevel"
   stashall = !git add . && git stash
   ru = remote update
+	alias = !git config --get-regexp 'alias.*' | sed 's/^alias\\.//' | sed 's/[ ]/ = /' | sort | less
 [pull]
   default = current
   rebase = true
