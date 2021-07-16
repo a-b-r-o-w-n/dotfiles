@@ -95,3 +95,17 @@ autocmd BufNewFile,BufRead *.jsx set filetype=javascript syntax=javascript.jsx
 " Load scripts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 source ~/.config/nvim/scripts.vim
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set up node
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if executable('volta')
+  let g:node_host_prog = trim(system("volta which neovim-node-host"))
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VS Code Neovim extension
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if exists('g:vscode')
+  source ~/.config/nvim/vscode.vim
+endif

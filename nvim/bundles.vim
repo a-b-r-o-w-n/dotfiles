@@ -11,9 +11,6 @@ Plug 'moll/vim-node'
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss', 'sass'] }
 Plug 'wesQ3/vim-windowswap'
 Plug 'tpope/vim-eunuch'
-" Plug 'tpope/vim-git'
-" Plug 'tmhedberg/matchit'
-" Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby' }
 
 Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_custom_ignore = {'dir': 'node_modules'}
