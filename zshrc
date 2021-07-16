@@ -124,3 +124,25 @@ export SPACESHIP_ELIXIR_SHOW=false
 export SPACESHIP_PACKAGE_SHOW=false
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# history
+HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g') # only for OSX
+source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
+autoload -Uz add-zsh-hook
+
+# integration with zsh-autosuggest
+_zsh_autosuggest_strategy_histdb_top_here() {
+    local query="select commands.argv from
+history left join commands on history.command_id = commands.rowid
+left join places on history.place_id = places.rowid
+where commands.argv LIKE '$(sql_escape $1)%'
+group by commands.argv
+order by places.dir != '$(sql_escape $PWD)', count(*) desc limit 1"
+    suggestion=$(_histdb_query "$query")
+}
+
+ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
+
+# reverse search
+source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/histdb-interactive.zsh
+bindkey '^r' _histdb-isearch
