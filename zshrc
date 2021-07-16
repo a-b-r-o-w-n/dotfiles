@@ -51,7 +51,8 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump docker-compose zsh-autosuggestions zsh-better-npm-completion)
+export NVM_LAZY=true
+plugins=(git autojump docker-compose nvm k zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -123,5 +124,3 @@ export SPACESHIP_ELIXIR_SHOW=false
 export SPACESHIP_PACKAGE_SHOW=false
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"

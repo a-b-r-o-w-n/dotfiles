@@ -20,9 +20,6 @@ alias grhh="git fetch && git reset --hard HEAD@{u}"
 alias grhhu="git fetch --all && git reset --hard HEAD@upstream"
 alias gtp="git fetch --prune origin +refs/tags/*:refs/tags/*"
 
-# General
-alias k=clear
-
 # docker
 alias dc='docker-compose'
 alias dcb='docker-compose build'
