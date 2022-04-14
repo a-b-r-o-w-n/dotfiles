@@ -13,12 +13,13 @@ PACKAGES=(
   git
   # go
   htop
-  httpie
+  # httpie
   # imagemagick
   jq
   moreutils
-  neovim
-  node
+  nvm
+  # neovim
+  # node
   # rbenv
   # rbenv-gemset
   ripgrep
