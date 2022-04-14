@@ -69,29 +69,7 @@ export PATH="$PATH:$GOPATH/bin:$HOME/bin"
 source ~/dotfiles/aliases
 
 # load env variables with direnv
-command -v direnv &>/dev/null && eval "$(direnv hook $0)"
-
-if [[ "$(uname)" == "Darwin" ]]; then
-  set_window_title() {
-    echo -ne "\e]1;$(basename $1)\a"
-  }
-
-  set_window_git_title() {
-    ref=$(git root 2> /dev/null)
-    if [[ -n $ref ]]; then
-      set_window_title $ref
-    else
-      set_window_title $(pwd)
-    fi
-  }
-
-  source ~/.iterm2_shell_integration.zsh
-  iterm2_print_user_vars() {
-    basedir=${$(git root 2> /dev/null):-$(pwd)}
-    iterm2_set_user_var project $(basename $basedir)
-    iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-)
-  }
-fi
+command -v direnv &>/dev/null && eval "$(direnv hook $SHELL)"
 
 if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local
