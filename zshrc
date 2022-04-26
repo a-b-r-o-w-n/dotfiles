@@ -1,5 +1,4 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export DOTFILES_HOME=$HOME/dotfiles
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -51,8 +50,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# export NVM_LAZY=true
-plugins=(git autojump docker-compose nvm k zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git autojump docker-compose k zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -77,6 +75,9 @@ fi
 
 command -v rbenv &>/dev/null && eval "$(rbenv init -)"
 
+if command -v fnm > /dev/null 2>&1; then
+  eval "`fnm env --use-on-cd`"
+fi
 
 # configure spaceship
 export SPACESHIP_TIME_SHOW=true
@@ -124,3 +125,5 @@ ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
 # reverse search
 source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/histdb-interactive.zsh
 bindkey '^r' _histdb-isearch
+
+fpath+=$DOTFILES_HOME/zfunc
