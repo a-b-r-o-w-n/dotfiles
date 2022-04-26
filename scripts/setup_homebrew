@@ -10,21 +10,14 @@ PACKAGES=(
   cmake
   dateutils
   direnv
+  fnm
   git
-  # go
   htop
-  # httpie
-  # imagemagick
   jq
   moreutils
-  nvm
-  # neovim
-  # node
-  # rbenv
-  # rbenv-gemset
+  node
   ripgrep
   tldr
-  # tmux
   zsh-completions
 )
 
