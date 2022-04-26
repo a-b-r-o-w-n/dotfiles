@@ -10,6 +10,10 @@ FILES_TO_LINK=(
   zshrc
 )
 
+DIRS_TO_LINK=(
+  bin
+)
+
 autoload -U colors && colors
 function print_info {
   group=$1
@@ -19,11 +23,20 @@ function print_info {
 }
 
 function link_files {
+  print_info "dotfiles" "symlinking files"
   for file in "${FILES_TO_LINK[@]}"; do
     print_info $file "linking to $OUTPUT_DIR/.$file"
     ln -sf $DIR/$file $OUTPUT_DIR/.$file
   done
 }
 
-print_info "dotfiles" "symlinking files"
+function link_dirs {
+  print_info "dotfiles" "symlinking directories"
+  for dir in "${DIRS_TO_LINK[@]}"; do
+    print_info $dir "linking to $OUTPUT_DIR/$dir"
+    ln -sf $DIR/$dir $OUTPUT_DIR/$dir
+  done
+}
+
 link_files
+link_dirs
