@@ -1,3 +1,5 @@
 !bin
 vim/bundle/
 nvim/bundle
+
+node_modules
