@@ -7,10 +7,13 @@ fi
 
 PACKAGES=(
   autojump
+  choose
   cmake
   dateutils
+  delta
   direnv
   fnm
+  fzf
   git
   htop
   jq
