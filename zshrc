@@ -61,7 +61,7 @@ export VISUAL='code -w'
 export EDITOR=$VISUAL
 
 export GOPATH=$HOME/go
-export PATH="$PATH:$GOPATH/bin:$HOME/bin"
+export PATH="$PATH:$GOPATH/bin:$DOTFILES_HOME/bin"
 
 # aliases
 source ~/dotfiles/aliases
@@ -126,4 +126,10 @@ ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
 source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/histdb-interactive.zsh
 bindkey '^r' _histdb-isearch
 
-fpath+=$DOTFILES_HOME/zfunc
+fpath+=$DOTFILES_HOME/zsh/completion
+fpath=( $DOTFILES_HOME/zfunc "${fpath[@]}" )
+
+_git 2>/dev/null
+
+autoload -Uz glolf
+compdef _git glolf=git-log

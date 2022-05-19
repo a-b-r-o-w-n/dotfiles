@@ -1,0 +1,17 @@
+_arguments
+
+function glolf() {
+  local cmd="git log --color=always --format='%C(auto)%h %s%d %C(black)%C(bold)%cr% C(auto)%an' $@"
+
+  zsh -c "${cmd}" \
+    | fzf --no-sort --reverse --tiebreak=index --ansi --multi \
+          --preview="git show \$(echo -n {} | choose 0) --color=always" \
+          --header "<C-d> diff, <C-h> hard reset, <C-r> revert, <C-s> soft reset, <C-y> copy sha" \
+          --bind "ctrl-d:execute(git show \$(echo -n {} | choose 0) --color=always | delta --paging always)" \
+          --bind "ctrl-h:execute(git reset --hard \$(echo -n {} | choose 0))+reload(${cmd})" \
+          --bind "ctrl-r:execute(git revert \$(echo -n {} | choose 0) --no-edit)+reload(${cmd})" \
+          --bind "ctrl-s:execute(git reset --soft \$(echo -n {} | choose 0))+reload(${cmd})" \
+          --bind "ctrl-y:execute-silent(echo -n {} | choose 0 | tr -d '\n' | pbcopy)"
+}
+
+glolf "$@"
