@@ -133,3 +133,6 @@ _git 2>/dev/null
 
 autoload -Uz glolf
 compdef _git glolf=git-log
+
+autoload -Uz gbf
+compdef _git gbf=git-branch

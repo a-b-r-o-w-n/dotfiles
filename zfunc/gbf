@@ -1,0 +1,12 @@
+function gbf() {
+  local cmd="git branch --color=always --format='%(if)%(HEAD:equals=*)%(then)%(color:bold green)%(end)%(refname:short)' $@"
+
+  zsh -c "${cmd}" \
+    | fzf --no-sort --reverse --tiebreak=index --ansi \
+          --preview="git log --color=always --pretty=format:'%C(red)%h%Creset - %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset' --abbrev-commit --date=relative \$(echo -n {} | choose 0)" \
+          --header "<C-c> checkout, <C-d> delete" \
+          --bind "ctrl-d:execute(git branch -D \$(echo -n {+} | choose 0))+reload(${cmd})" \
+          --bind "ctrl-h:execute(git checkout \$(echo -n {} | choose 0))+reload(${cmd})" \
+}
+
+gbf "$@"
