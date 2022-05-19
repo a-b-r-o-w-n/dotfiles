@@ -10,7 +10,7 @@
 [core]
   excludesfile = ~/.gitignore
   ignorecase = false
-  pager = less -S
+  pager = delta
 [alias]
   c = commit
   cme = commit --amend --no-edit
@@ -58,3 +58,6 @@
 	cmd = code --wait --diff $LOCAL $REMOTE
 [init]
 	defaultBranch = main
+[delta]
+	features = line-numbers decorations
+	whitespace-error-style = 22 reverse
