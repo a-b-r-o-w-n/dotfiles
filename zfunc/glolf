@@ -1,7 +1,5 @@
-_arguments
-
 function glolf() {
-  local cmd="git log --color=always --format='%C(auto)%h %s%d %C(black)%C(bold)%cr% C(auto)%an' $@"
+  local cmd="git log --color=always --pretty=format:'%C(red)%h%Creset - %s %Cgreen(%cr)%Creset %Cblue(%an)%Creset' --abbrev-commit --date=relative $@"
 
   zsh -c "${cmd}" \
     | fzf --no-sort --reverse --tiebreak=index --ansi --multi \
