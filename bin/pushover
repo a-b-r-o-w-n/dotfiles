@@ -1,0 +1,32 @@
+#!/usr/bin/env zx
+
+import { path, fs, argv, quiet } from "zx";
+
+import { runScript } from "../util/runScript.mjs";
+import { createLogger } from "../util/log.mjs";
+
+const logger = createLogger("pushover");
+
+await runScript(logger, async ({ baseDir }) => {
+  const message = argv._[1] ?? "done";
+
+  const { token, user } = await fs.readJson(
+    path.resolve(baseDir, "../secrets/pushover.json")
+  );
+
+  if (!token || !user) {
+    throw new Error("Invalid pushover.json");
+  }
+
+  await fetch("https://api.pushover.net/1/messages.json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      token,
+      user,
+      message,
+    }),
+  });
+});
